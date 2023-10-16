@@ -116,7 +116,7 @@ a {
 }
 
 a:hover {
-    background-color: var(--main-hover);
+    background-color: #00000020;
 }
 
 div > p{
