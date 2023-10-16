@@ -53,6 +53,17 @@ html {
     background-color: var(--main-hover);
 }
 
-.main {
+
+.image {
+    width: 250px; /* Set the width of your image */
+    height: auto;
+    margin-right: 50px; /* Adjust the spacing between the image and text */
+}
+
+.content {
+    display: flex;
+    align-items: right;
+    justify-content: flex-end;
+    margin: 100px;
     
 }
