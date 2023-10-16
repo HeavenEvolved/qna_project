@@ -25,6 +25,10 @@ html {
     margin: 0;
     padding: 0;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     background-color: var(--bg);
 
     height: 100vh;
@@ -36,35 +40,41 @@ html {
     width: 100vw;
     display: flex;
 
-    background-color: var(--main);
     justify-content: space-around;
 }
 
 .nav-item {
-    display: flex;
     height: 100%;
     width: 200px;
-
-    color: var(--bg);
-
-    justify-content: center;
-    align-items: center;
 }
 
-.nav-item:hover {
-    background-color: var(--main-hover);
+.nav-item>a {
+    width: 100%;
+    height: 100%;
+    background: transparent;
 }
 
 .main {
-    height: 100%;
-    width: 100%;
+    height: 86vh;
+    width: 100vw;
 
     display: grid;
     grid-template-columns: 40vw 60vw;
 }
 
+@keyframes gradient {
+    0%,100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
 .links,
 .intro {
+
+    /* background-color: var(--bg); */
     height: 100%;
 
     display: flex;
@@ -76,16 +86,98 @@ html {
 .link-container {
     height: 30%;
     width: 50%;
-
-    /* outline: 1px red solid; */
-
     padding: 20px;
+    margin: 20px;
 }
 
-.link-container > a {
+.link-container>a {
+    width: 50%;
+    height: 20%;
+
+    border-radius: 10px;
+}
+
+.footer {
+    width: 100vw;
+    height: 7vh;
+
+    background-color: var(--main);
+}
+
+a {
     color: var(--bg);
     text-decoration: none;
     background-color: var(--main);
-    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 10px;
+}
+
+a:hover {
+    background-color: var(--main-hover);
+}
+
+div > p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.nav {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--main) 30%, var(--main) 100%);
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
+}
+
+.footer {
+    background: linear-gradient(-45deg, var(--dark) 0%, var(--main) 30%, var(--main) 100%);
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
+}
+
+
+
+.intro {
+    width: 100%;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+}
+
+.intro > p{
+    width: 50%;
+}
+
+.logo {
+    width: 25%;
+    aspect-ratio: 1/1;
+}
+
+@media (max-width: 500px) {
+    *{
+        outline: 1px red solid;
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .links {
+        grid-row: 2;
+    }
+
+    .link-container > a {
+        width: 100%;
+        height: 40%;
+    }
+
+    .intro {
+        padding-top: 20px;
+        grid-row: 1;
+    }
 }
