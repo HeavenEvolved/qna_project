@@ -35,7 +35,7 @@ html {
     height: 7vh;
     width: 100vw;
     display: flex;
-
+    color:var(--bg);
     background-color: var(--main);
     justify-content: space-around;
 }

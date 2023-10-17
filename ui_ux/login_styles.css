@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.login-container {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.background-image {
+    position: relative;
+    overflow: hidden;
+    height:100%;
+    width:50%;
+    background-color: #3553ea;
+}
+
+.background-image:after {
+    content: '';
+    position: absolute;
+    height: 200%;
+    width: 200%;
+    top: -50%;
+    left: -40%;
+    background: url('../WAISL\ LOGO-16.png') 0 0 repeat;
+    background-size: 12.5%;
+    z-index: 1;
+    rotate: -45deg;
+}
+
+.login-form {
+    flex: 1;
+    padding: 40px;
+    background-color: #fef9f4;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #555;
+}
+
+.onboarding {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #555;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
