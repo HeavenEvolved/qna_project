@@ -8,7 +8,7 @@ body {
     background-color: #f0f0f0;
 }
 
-.register-container {
+.container {
     display: flex;
     width: 80%;
     height: 80%;
@@ -37,7 +37,7 @@ body {
     rotate: -45deg;
 }
 
-.register-form {
+.form {
     flex: 1;
     padding: 40px;
     background-color: #fef9f4;
@@ -72,9 +72,12 @@ input[type="password"] {
 }
 
 
-.login {
+.login ,
+.onboarding,
+.forgot-password
+{
     display: block;
-    margin-top: 10px;
+    margin-top: 20px;
     text-decoration: none;
     color: #555;
 }
