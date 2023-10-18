@@ -1,1 +1,4 @@
 django
+ipykernel
+langchain
+unstructured
