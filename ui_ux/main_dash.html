@@ -13,6 +13,7 @@
         />
 
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="main.css" />
     </head>
     <body>
         <div class="container">
@@ -23,139 +24,90 @@
                 <h1>WAISL Generative AI Platform</h1>
             </div>
             <div class="user">
-                <p class="user_name">Heaven Evolved</p>
-                <p class="user_handle">@heavenevolved</p>
-                <img src="./elements/user.jpg" alt="" />
                 <div class="menu">
+                    <div class="menu-item">
+                        <a href="home_dash.html">Home</a>
+                    </div>
                     <div class="menu-item"><a href="#">Reports</a></div>
                     <div class="menu-item"><a href="#">Config</a></div>
                     <div class="menu-item"><a href="#">Change Password</a></div>
                     <div class="menu-item"><a href="#">Log Out</a></div>
                 </div>
-            </div>
-            <div class="config">
-                <div class="configs">
-                    <div class="llm-select">
-                        <p>Select LLM</p>
-
-                        <div class="llm-items">
-                            <div class="llm-item">
-                                <label for="llama-2">Llama 2</label>
-                                <input
-                                    type="radio"
-                                    name="llm"
-                                    id="llama-2"
-                                    checked
-                                />
-                            </div>
-                            <div class="llm-item">
-                                <label for="gpt-3_5">GPT-3.5</label>
-                                <input
-                                    type="radio"
-                                    name="llm"
-                                    id="gpt-3_5"
-                                />
-                            </div>
-                            <div class="llm-item">
-                                <label for="gpt-4">GPT-4</label>
-                                <input
-                                    type="radio"
-                                    name="llm"
-                                    id="gpt-4"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="top-k-select">
-                        <p>Top K</p>
-                        <!-- <hr /> -->
-
-                        <div class="top-k-items">
-                            <div class="top-k-item">
-                                <label for="top-k_10">10</label>
-                                <input
-                                    type="radio"
-                                    name="top-k"
-                                    id="top-k_10"
-                                    checked
-                                />
-                            </div>
-                            <div class="top-k-item">
-                                <label for="top-k_20">20</label>
-                                <input
-                                    type="radio"
-                                    name="top-k"
-                                    id="top-k_20"
-                                />
-                            </div>
-                            <div class="top-k-item">
-                                <label for="top-k_30">30</label>
-                                <input
-                                    type="radio"
-                                    name="top-k"
-                                    id="top-k_30"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="temp-select">
-                        <p>Temperature</p>
-                        <!-- <hr /> -->
-                        <input
-                            type="range"
-                            name="temp"
-                            id="temp"
-                            min="0"
-                            max="1"
-                            value="0.75"
-                            step="0.01"
-                            list="temp-markers"
-                        />
-                        <p class="temp-text">
-                            Temperature: <e id="tempVal">0.75</e>
-                        </p>
-                        <datalist id="temp-markers">
-                            <option value="0"></option>
-                            <option value="0.25"></option>
-                            <option value="0.5"></option>
-                            <option value="0.75"></option>
-                            <option value="1"></option>
-                        </datalist>
-                    </div>
-
-                    <div class="context-len">
-                        <p>Context Length</p>
-                        <!-- <hr /> -->
-                        <input
-                            type="range"
-                            name="context"
-                            id="context"
-                            min="0"
-                            max="513"
-                            value="512"
-                            step="512"
-                            list="context-markers"
-                        />
-                        <p class="context-text">
-                            Context Length: <e id="contextVal">512</e>
-                        </p>
-                        <datalist id="context-markers">
-                            <option value="512"></option>
-                            <option value="1024"></option>
-                            <option value="2048"></option>
-                            <option value="4096"></option>
-                            <option value="8192"></option>
-                        </datalist>
-                    </div>
-                </div>
-
-                <div class="btn-container">
-                    <button id="config-btn" type="submit">Save Config</button>
+                <p class="user_name">Heaven Evolved</p>
+                <p class="user_handle">@heavenevolved</p>
+                <div class="profile">
+                    <img src="./elements/user.jpg" alt="" />
                 </div>
             </div>
-            <div class="content"></div>
+            <div class="content">
+                <div class="content-container">
+                    <div class="spacer"></div>
+                    <div class="title">
+                        <h1>Meet WAISL-Gen</h1>
+                        <p>
+                            A next-generation AI Assistant for your documents,
+                            no matter the scale.
+                        </p>
+                    </div>
+                    <div class="btn-container">
+                        <div class="btn">
+                            <a href="gen_qa_dash.html">Document QnA</a>
+                        </div>
+                        <div class="btn">
+                            <a href="resume_dash.html">Resume Ranking</a>
+                        </div>
+                    </div>
+                    <div class="llm">
+                        <div class="llm-logo">
+                            <img
+                                src="./elements/meta_logo.png"
+                                alt="Meta Logo"
+                            />
+                        </div>
+                        <p>
+                            Llama 2 is Meta's open source large language model
+                            (LLM). It's basically the Facebook parent company's
+                            response to OpenAI's GPT models and Google's AI
+                            models like PaLM 2—but with one key difference: it's
+                            freely available for almost anyone to use for
+                            research and commercial purposes.
+                        </p>
+                        <p>
+                            Llama 2 is a family of LLMs like GPT-3 and PaLM 2.
+                            While there are some technical differences between
+                            it and other LLMs, you would really need to be deep
+                            into AI for them to mean much. All these LLMs were
+                            developed and work in essentially the exact same
+                            way; they all use the same transformer architecture
+                            and development ideas like pretraining and
+                            fine-tuning.
+                        </p>
+                    </div>
+                    <div class="llm">
+                        <div class="llm-logo">
+                            <img
+                                src="./elements/openai_logo.png"
+                                alt="OpenAI Logo"
+                            />
+                        </div>
+                        <p>
+                            OpenAI is a private research laboratory that aims to
+                            develop and direct artificial intelligence (AI) in
+                            ways that benefit humanity as a whole. The company
+                            was founded by Elon Musk, Sam Altman and others in
+                            2015 and is headquartered in San Francisco.
+                        </p>
+                        <p>
+                            Generative Pre-trained Transformer 4 (GPT-4) is a
+                            multimodal large language model created by OpenAI,
+                            and the fourth in its series of GPT foundation
+                            models. It was initially released on March 14, 2023
+                            and has been made publicly available via the paid
+                            chatbot product ChatGPT Plus, and via OpenAI's API.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script

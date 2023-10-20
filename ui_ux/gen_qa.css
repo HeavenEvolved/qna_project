@@ -1,0 +1,64 @@
+:root {
+    --user: #f9f9fa;
+    --system: #ededf1;
+}
+
+.content {
+    grid-column: 2 / span 2;
+}
+
+.logs {
+    height: 100%;
+    width: 100%;
+    background-color: var(--darker);
+}
+
+.content-container {
+
+    position: absolute;
+    z-index: 1;
+
+    left: 5%;
+    top: 5%;
+
+    width: 90%;
+    height: 90%;
+
+    display: grid;
+    grid-template-columns: minmax(30vw, 45vw) minmax(30vw, 45vw);
+    grid-template-rows: 90% 10%;
+    gap: 5px;
+
+    & > div {
+        background-color: var(--dark);
+        grid-column: 1 / span 2;
+        /* border: 1px var(--darker) solid; */
+        box-sizing: border-box;
+    }
+
+    & > .chat-window {
+        border-radius: 10px 10px 0 0;
+        overflow: auto;
+
+        & > div {
+
+            padding: 20px 50px;
+            font-size: 0.4rem;
+        }
+
+        & > .user-chat {
+            /* text-align: right; */
+            background-color: var(--user);
+        }
+
+        & > .system-chat {
+            background-color: var(--system);
+        }
+    }
+
+    & > .chat-box {
+        border-radius: 0 0 10px 10px;
+        height: calc(100% - 1px);
+    }
+
+}
