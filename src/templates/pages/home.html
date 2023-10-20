@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="flex flex-col h-screen">
+    <div class="flex justify-between h-32">
+        <div class="bg-orange-400 h-full"><img class="min-h-full w-32" src="../../static/elements/logo-no-bg.png" alt="" /></div>
+        <div class="flex items-center h-full">
+            <a href="#" class="a">Home</a>
+            <a href="#" class="a">About</a>
+            <a href="#" class="a">Contact</a>
+        </div>
+    </div>
+
+    <div
+        class="bg-gradient-to-tl flex flex-col gap-5 h-full justify-center items-center from-violet-200 via-violet-500 to-violet-800"
+    >
+        <h1 class="h1 opacity-100">Hello World!</h1>
+        <h1 class="h1 opacity-75">Hello World!</h1>
+        <h1 class="h1 opacity-50">Hello World!</h1>
+        <h1 class="h1 opacity-25">Hello World!</h1>
+    </div>
+</div>
+
+{% endblock content %}
