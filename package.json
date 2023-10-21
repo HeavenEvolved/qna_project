@@ -4,7 +4,7 @@
   "description": "Website for WAISL Generative AI Projects",
   "main": "index.js",
   "scripts": {
-    "dev": "tailwindcss -i src/static/tw/tw-input.css -o src/static/css/tw-output.css -w"
+    "dev": "npx tailwindcss -i src/static/input.css -o src/static/output.css -w"
   },
   "author": "HeavenEvolved",
   "license": "ISC",

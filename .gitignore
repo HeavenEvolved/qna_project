@@ -3,3 +3,4 @@ __pycache__/
 py_files/
 local-cdn/
 node_modules/
+CACHE/

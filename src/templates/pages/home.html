@@ -1,22 +1,41 @@
-{% extends "base.html" %} {% block content %}
+{% extends "_base.html" %} {% block content %}
 
-<div class="flex flex-col h-screen">
-    <div class="flex justify-between h-32">
-        <div class="bg-orange-400 h-full"><img class="min-h-full w-32" src="../../static/elements/logo-no-bg.png" alt="" /></div>
-        <div class="flex items-center h-full">
-            <a href="#" class="a">Home</a>
-            <a href="#" class="a">About</a>
-            <a href="#" class="a">Contact</a>
-        </div>
-    </div>
-
+<div
+    id="nav"
+    class="h-1/6 col-span-2 w-screen flex justify-between bg-gray-200"
+>
+    <a class="h-44 w-44" href="home.html"><img
+        class="bg-orange-500"
+        src="../../static/elements/logo-no-bg.png"
+        alt="WAISL Logo"
+    /></a>
+    <h1 class="h-full grid place-content-center font-bold text-3xl">
+        WAISL GenAI Platform
+    </h1>
     <div
-        class="bg-gradient-to-tl flex flex-col gap-5 h-full justify-center items-center from-violet-200 via-violet-500 to-violet-800"
+        id="user"
+        class="h-full w-44 flex justify-end items-center"
     >
-        <h1 class="h1 opacity-100">Hello World!</h1>
-        <h1 class="h1 opacity-75">Hello World!</h1>
-        <h1 class="h1 opacity-50">Hello World!</h1>
-        <h1 class="h1 opacity-25">Hello World!</h1>
+        <img class="h-28 w-28 mr-8" src="../../static/elements/user.jpg" alt="" />
+    </div>
+</div>
+
+<div
+    id="main"
+    class="flex justify-center items-center h-5/6 w-full bg-gray-400"
+>
+    <div class="w-5/6 h-4/5 bg-gray-200">
+        <h1 class="w-full text-center font-bold text-2xl mt-10 mb-2">
+            Welcome to the WAISL GenAI Platform
+        </h1>
+        <h5 class="w-full font-semibold text-center text-xl mt-5 mb-10">
+            A next-generation AI Assistant for all your tasks, no matter the
+            scale.
+        </h5>
+        <div id="btn-container" class="w-full flex justify-center align-middle">
+            <button class="mr-5 h-10 bg-gray-100 text-gray-800 px-5 border-orange-500 border-2 box-border hover:bg-orange-500 hover:text-gray-200">Submit Business Interest</button>
+            <button class="ml-5 h-10 bg-gray-100 text-gray-800 px-5 border-orange-500 border-2 box-border hover:bg-orange-500 hover:text-gray-200">Talk to WAISL-Gen</button>
+        </div>
     </div>
 </div>
 
