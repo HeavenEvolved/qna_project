@@ -19,7 +19,8 @@
             {% include "head/css.html" %}
         {% endcompress %}
     </head>
-    <body class="h-screen w-screen flex flex-wrap">
+    <body class="font-sans h-screen w-screen flex flex-wrap">
+        {% include "head/nav.html" %}
         {% block content %}{% endblock content %}
 
         {% include "head/js.html" %}

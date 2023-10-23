@@ -1,14 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-// const colors = require("tailwindcss/colors");
 module.exports = {
-    content: [
-        "./src/**/*.{html,js}",
-        "./node_modules/flowbite/**/*.js"
-    ],
+    content: ["./src/**/*.{html,js}", "./node_modules/flowbite/**/*.js"],
     theme: {
+        fontFamily: {
+            sans: ["Montserrat", "sans-serif"],
+        },
         extend: {},
     },
-    plugins: [
-        require('flowbite/plugin')
-    ],
+    plugins: [require("flowbite/plugin"), require("@tailwindcss/line-clamp")],
 };
