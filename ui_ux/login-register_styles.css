@@ -21,20 +21,7 @@ body {
     overflow: hidden;
     height:100%;
     width:50%;
-    background-color: #3553ea;
-}
-
-.background-image:after {
-    content: '';
-    position: absolute;
-    height: 200%;
-    width: 200%;
-    top: -50%;
-    left: -40%;
-    background: url('../WAISL\ LOGO-16.png') 0 0 repeat;
-    background-size: 12.5%;
-    z-index: 1;
-    rotate: -45deg;
+    background: url('../gen_ai.PNG') center/cover no-repeat;
 }
 
 .form {
@@ -43,21 +30,25 @@ body {
     background-color: #fef9f4;
 }
 
-h2 {
+h3 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 24px;
     color: #333;
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
     display: block;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #333;
 }
 
@@ -84,7 +75,8 @@ input[type="password"] {
 
 button {
     width: 100%;
-    padding: 12px;
+    margin-top: 5px;
+    padding: 20px;
     background-color: #4caf50;
     color: white;
     border: none;
