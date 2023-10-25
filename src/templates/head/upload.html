@@ -5,11 +5,11 @@
         class="w-[100%] group flex justify-center items-center h-[100%] bg-gray-100"
     >
         <div
-            class="w-[99%] h-[98%] group-hover:border-solid group-hover:border-blue-500 border-gray-400 border-dashed border-2 flex justify-center items-center"
+            class="w-[99%] h-[98%] group-hover:border-solid group-hover:border-blue-500 border-blue-500 border-dashed border-2 flex justify-center items-center"
         >
             <input id="file_upload" type="file" class="hidden" />
-            <p id="error" class="text-center text-md">
-                Drag-n-Drop or Click to upload your files!
+            <p id="error" class="px-8 text-center text-md">
+                {{ dropmsg }}
             </p>
         </div>
     </div>
@@ -39,7 +39,7 @@
                 <label for="temp">Temperature</label>
                 <br />
                 <input
-                    class="w-[75%] bg-transparent"
+                    class="w-full lg:w-[75%] bg-transparent"
                     type="range"
                     name="temp"
                     id="temp"
@@ -62,7 +62,7 @@
                 <label for="topK">Top-K</label>
                 <br />
                 <input
-                    class="w-[75%] bg-transparent"
+                    class="w-full lg:w-[75%] bg-transparent"
                     type="range"
                     name="topK"
                     id="topK"
@@ -96,7 +96,7 @@
     </div>
     <button
         id="config-btn"
-        class="bg-blue-500 text-gray-100 p-2 w-28 h-12 m-auto font-bold grid place-content-center hover:bg-blue-600"
+        class="rounded-md bg-blue-500 text-gray-100 p-2 w-28 h-12 m-auto font-bold grid place-content-center hover:bg-blue-600"
     >
         Submit
     </button>

@@ -12,21 +12,35 @@ def main_view(request):
     return render(request, 'pages/main.html', c)
 
 def doc_view(request):
-    c = {}
+    c = {
+        'dropmsg': "Drag-n-Drop or Click to upload your files!"
+    }
     
-    if request.method == "POST":        
-        uploaded = request.FILES['file']
-        target_folder = os.getcwd()+'/src/media/files/'
-        
-        if uploaded.name not in os.listdir(target_folder):
-            with open(target_folder+uploaded.name, 'wb+') as fp:
-                for c in uploaded.chunks():
-                    fp.write(c)
-        
-        return redirect('home')
+    if request.method == "POST":
+        try:
+            uploaded = request.FILES['file']
+            target_folder = os.getcwd()+'/src/media/files/'
+            
+            try:
+                if uploaded and uploaded.name not in os.listdir(target_folder):
+                    with open(target_folder+uploaded.name, 'wb+') as fp:
+                        for c in uploaded.chunks():
+                            fp.write(c)
+                c['dropmsg'] = 'Successfully Uploaded!'
+            except:
+                c['dropmsg'] = 'Upload Failed!'
+        except:
+            pass
     
     return render(request, 'pages/doc_qa.html', c)
 
 def resume_view(request):
-    c = {}
+    c = {
+        'dropmsg': "Drag-n-Drop or Click to upload your files!"
+    }
+    
+    if request.method == "POST":
+        pass
+    
+    
     return render(request, 'pages/resume.html', c)

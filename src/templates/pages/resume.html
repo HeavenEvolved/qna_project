@@ -4,19 +4,14 @@
     id="main"
     class="flex justify-center items-center h-5/6 w-full bg-gray-400"
 >
-    <div class="w-5/6 h-4/5 bg-gray-200">
+    <div class="w-5/6 h-4/5 bg-gray-200 rounded-md">
         <div id="doc-config" class="w-full h-full flex flex-wrap">
             <h1
                 class="w-[100%] h-[20%] text-2xl font-bold grid place-content-center"
             >
                 Resume AI
             </h1>
-                {% include "head/upload_top.html" %}
-                <form class="h-[80%] w-full" action="/" method="POST">
-                    {% csrf_token %}
-                    {% include "head/upload_bottom.html" %}
-                    <button class="bg-gray-400 p-2 w-28 h-12 m-auto font-bold grid place-content-center hover:bg-orange-500 hover:text-gray-200" type="submit">Submit</button>
-                </form>
+                {% include "head/upload.html" %}
             </div>
         </div>
     </div>

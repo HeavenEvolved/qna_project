@@ -17,18 +17,13 @@ function filterFiles(files) {
                     " is too big! The Maximum File size is 1GB. The size of this file is " +
                     files[i].size +
                     ". Try again!";
-                continue;
             }
         } else {
             dropMsg.textContent =
                 files[i].name +
                 " is not permitted! We only accept PDF, DOC, DOCX and TXT files. Try again!";
-            continue;
         }
 
-        setTimeout(() => {
-            dropMsg.textContent = "Drag-n-Drop or Click to upload your files!";
-        }, 500);
     }
 
     return finalArray;
@@ -61,17 +56,11 @@ function upload(files) {
         var fd = new FormData();
         fd.append("file", files[i]);
 
+        dropMsg.textContent = "Uploading...";
+
         const csrftoken = $("[name=csrfmiddlewaretoken").val();
 
         var xhr = new XMLHttpRequest();
-
-        xhr.addEventListener("progress", function (e) {
-            var done = e.position || e.loaded;
-            var total = e.totalSize || e.total;
-            console.log(
-                "xhr progress: " + Math.round((done / total) * 100) + "%"
-            );
-        });
 
         xhr.open("POST", "", true);
         xhr.setRequestHeader("X-CSRFToken", csrftoken);
