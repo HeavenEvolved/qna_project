@@ -21,7 +21,7 @@ body {
     overflow: hidden;
     height:100%;
     width:50%;
-    background: url('../gen_ai.PNG') center/cover no-repeat;
+    background: url('../static/elements/gen_ai.PNG') center/cover no-repeat;
 }
 
 .form {

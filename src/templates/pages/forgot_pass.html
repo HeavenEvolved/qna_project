@@ -1,10 +1,12 @@
+{% load static%}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login-register_styles.css">
+    <link rel="stylesheet" href="{% static 'login-register_styles.css' %}">
     <title>Change Password</title>
 </head>
 
@@ -14,6 +16,10 @@
         <div class="form">
             <h3>Change Password</h3>
             <form>
+                <div class="input-group">
+                    <label for="Enter_username">Enter Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
                 <div class="input-group">
                     <label for="old_password">Enter Old Password</label>
                     <input type="text" id="old_password" name="old_password" required>
