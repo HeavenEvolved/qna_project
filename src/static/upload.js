@@ -53,10 +53,7 @@ $(dropZone).on("dragover", (e) => {
 
 $(dropZone).on("drop", (e) => {
     e.preventDefault();
-
-    const files = filterFiles(e.originalEvent.dataTransfer.files);
-
-    upload(files);
+    upload(filterFiles(e.originalEvent.dataTransfer.files));
 });
 
 function upload(files) {
@@ -64,32 +61,20 @@ function upload(files) {
         var fd = new FormData();
         fd.append("file", files[i]);
 
-        dropMsg.textContent = "Uploading...";
+        const csrftoken = $("[name=csrfmiddlewaretoken").val();
 
-        const req = new XMLHttpRequest();
-        req.open("POST", "");
+        var xhr = new XMLHttpRequest();
 
-        req.upload.addEventListener("progress", (e) => {
-            const progress = e.loaded / e.total;
-            dropMsg.textContent = (progress * 100).toFixed() + "%";
-
-            if (progress === 1) dropMsg.textContent = "Processing...";
+        xhr.addEventListener("progress", function (e) {
+            var done = e.position || e.loaded;
+            var total = e.totalSize || e.total;
+            console.log(
+                "xhr progress: " + Math.round((done / total) * 100) + "%"
+            );
         });
 
-        req.addEventListener("load", () => {
-            if (req.status === 200) {
-                dropMsg.textContent = "Success!";
-                console.log(JSON.parse(req.responseText));
-            }
-            else {
-                dropMsg.textContent = "Upload Failed!";
-            }
-        });
-
-        req.addEventListener("error", () => {
-            dropMsg.textContent = "Upload failed!";
-        })
-
-        req.send(fd);
+        xhr.open("POST", "", true);
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        xhr.send(fd);
     }
 }

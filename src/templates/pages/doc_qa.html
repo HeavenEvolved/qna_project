@@ -11,12 +11,8 @@
             >
                 Document QnA
             </h1>
-                {% include "head/upload_top.html" %}
-                <form class="h-[80%] w-full" action="/" method="POST">
-                    {% csrf_token %}
-                    {% include "head/upload_bottom.html" %}
-                    <button class="bg-gray-400 p-2 w-28 h-12 m-auto font-bold grid place-content-center hover:bg-orange-500 hover:text-gray-200" type="submit">Submit</button>
-                </form>
+                {% include "head/upload.html" %}
+                
             </div>
         </div>
     </div>
