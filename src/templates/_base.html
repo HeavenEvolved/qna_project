@@ -21,7 +21,6 @@
     </head>
     <body class="font-sans h-screen w-screen flex flex-wrap">
         {% csrf_token %}
-        {% include "head/nav.html" %}
         {% block content %}{% endblock content %}
 
         {% include "head/js.html" %}

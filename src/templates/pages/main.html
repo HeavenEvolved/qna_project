@@ -1,4 +1,4 @@
-{% extends "_base.html" %} {% block content %}
+{% extends "_base.html" %} {% block content %} {% include "head/nav.html" %}
 
 <div
     id="main"
@@ -39,9 +39,7 @@
         </div>
         <div class="flex flex-col md:flex-row h-[50%] w-full">
             <div class="w-full md:w-[50%] h-full">
-                <div
-                    class="h-32 flex justify-center items-center"
-                >
+                <div class="h-32 flex justify-center items-center">
                     <img
                         class="h-28 w-28"
                         src="../../static/elements/meta_logo.png"
@@ -59,9 +57,7 @@
                 </div>
             </div>
             <div class="w-full md:w-[50%] h-full">
-                <div
-                    class="h-32 flex justify-center items-center"
-                >
+                <div class="h-32 flex justify-center items-center">
                     <img
                         class="h-12"
                         src="../../static/elements/openai_logo.png"

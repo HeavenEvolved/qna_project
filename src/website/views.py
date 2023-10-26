@@ -7,6 +7,23 @@ def home_view(request):
     c = {}
     return render(request, 'pages/home.html', c)
 
+def login_view(request):
+    c = {}
+    return render(request, 'pages/login.html')
+
+def register_view(request):
+    c = {}
+    return render(request, 'pages/register.html')
+
+def reset_view(request):
+    c = {}
+    
+    if request.method == 'POST':
+        print(request)
+        return redirect('login');
+    
+    return render(request, 'pages/reset.html')
+
 def main_view(request):
     c = {}
     return render(request, 'pages/main.html', c)

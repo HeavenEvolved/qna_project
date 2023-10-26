@@ -54,6 +54,7 @@ $(dropZone).on("drop", (e) => {
 function upload(files) {
     for (let i = 0; i < files.length; i++) {
         var fd = new FormData();
+        console.log(files[i]);
         fd.append("file", files[i]);
 
         dropMsg.textContent = "Uploading...";
