@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "_base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="login-register_styles.css">
-
-</head>
-
-<body>
-    <div class="container">
-        <div class="background-image"></div>
-        <div class="form">
-            <h2>Login</h2>
-            <form>
-                <div class="input-group">
+{% block content %}
+<div class="flex w-full h-full justify-center items-center bg-gray-200">
+    <div class="grid grid-cols-2 grid-rows-1 w-[90%] h-[80%] shadow-lg shadow-gray-800 bg-slate-50">
+        <div class="h-full w-full overflow-hidden flex items-center">
+            <img class="scale-[260%]" src="../../static/elements/gen_ai.png" alt="">
+        </div>
+        <div class="bg-gray-50 flex flex-col items-center">
+            <h2 class="h-[20%] text-3xl font-bold grid place-content-center">Login</h2>
+            <form class="h-[80%] w-full flex flex-col items-center px-5">
+                <div class="w-full my-5 flex flex-col">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <input class="" type="text" id="username" name="username" placeholder="Enter your username..." required>
                 </div>
-                <div class="input-group">
+                <div class="w-full my-5 flex flex-col">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                    <a href="forgot_pass.html" class="forgot-password"><b>Forgot Password?</b></a>
-                    <a href="register.html" class="onboarding"><b>Need an Account? SIGN UP<b></a>
+                    <input class="" type="password" id="password" name="password" placeholder="Enter your password..." required>
                 </div>
-                <button type="submit">Submit</button>
+                <a href="/reset" class="font-bold text-xl my-3 text-blue-500 hover:text-blue-600 self-start">Forgot Password?</a>
+                <a href="/register" class="font-bold text-xl text-blue-500 hover:text-blue-600 self-start">Need an Account?</a>
+                <button class="my-5 h-20 w-full bg-blue-500 text-gray-100 hover:bg-blue-600 rounded-md text-2xl font-bold" type="submit">Submit</button>
             </form>
         </div>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js
-"></script>
-</body>
-
-</html>
+</div>
+{% endblock content %}

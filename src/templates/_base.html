@@ -20,7 +20,7 @@
         {% endcompress %}
     </head>
     <body class="font-sans h-screen w-screen flex flex-wrap">
-        {% include "head/nav.html" %}
+        {% csrf_token %}
         {% block content %}{% endblock content %}
 
         {% include "head/js.html" %}
