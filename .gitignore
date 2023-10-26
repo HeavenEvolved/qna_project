@@ -1,6 +1,5 @@
 node_modules/
-CACHE/
+src/static/CACHE/
 __pycache__/
-
+*.pyc
 files/
-static/output.css
