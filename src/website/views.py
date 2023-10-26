@@ -4,13 +4,37 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 from user.models import Project
 from django.contrib import messages
+from django.contrib.auth import authenticate , login
+
+# def login_view(request):
+#     return render(request, 'pages/login.html')
 
 def login_view(request):
-    return render(request, 'pages/login.html')
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not User.objects.filter(username = username).exists():
+            messages.info(request,'Invalid Username')
+            return redirect('login')
+        
+        user = authenticate(username = username , password = password)
+
+        if user is None:
+            messages.info(request,'Invalid Password')
+            return redirect('login')
+        
+        else: 
+            login(request,user)
+            return redirect('main')
+
+    return render(request,'pages/login.html')
 
 def register_view(request):
 
     if request.method == "POST":
+        
         email = request.POST.get('company_name')
         first_name = request.POST.get('full_name')
         username = request.POST.get('username')

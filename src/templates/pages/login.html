@@ -17,7 +17,15 @@
         <div class="background-image"></div>
         <div class="form">
             <h2>Login</h2>
-            <form>
+            {% if messages %}
+            <div style="width:100%;height:auto;border-radius: 10px;background-color: #0000ff50;padding:10px;color:white;" role ="alert">
+                {% for message in messages%}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <form method="post", enctype="multipart/form-data", action="{% url 'login' %}">
+            {% csrf_token %}
                 <div class="input-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
@@ -28,7 +36,8 @@
                     <a href="forgot/" class="forgot-password"><b>Forgot Password?</b></a>
                     <a href="register/" class="onboarding"><b>Need an Account? SIGN UP<b></a>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" >Submit</button>
+                <!-- <a href="main/">MAIN PAGE</a> -->
             </form>
         </div>
     </div>

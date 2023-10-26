@@ -13,10 +13,17 @@
 <body>
     <div class="container">
         <div class="background-image"></div>
-        <div class="form">
+    <div class="form">
             <h3>User Registration</h3>
             <form method="post", enctype="multipart/form-data", action="{% url 'register' %}">
             {% csrf_token %}
+            {% if messages %}
+            <div style="width:100%;height:auto;border-radius: 10px;background-color: #0000ff50;padding:10px;color:white;" role ="alert">
+                {% for message in messages%}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
                 <div class="input-group">
                     <label for="company_name">Enter Company Name</label>
                     <input type="text" id="company_name" name="company_name" required>
