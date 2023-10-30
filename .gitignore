@@ -3,3 +3,4 @@ src/static/CACHE/
 __pycache__/
 *.pyc
 media/files/
+util.py

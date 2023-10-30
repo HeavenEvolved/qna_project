@@ -1,5 +1,7 @@
 django
 django-compressor
 ipykernel
-langchain
+langchain[all]
 unstructured
+torch
+transformers
