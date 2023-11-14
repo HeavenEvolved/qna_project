@@ -6,3 +6,5 @@ media/files/
 util.py
 *.gguf
 *.bin
+*.pdf
+*.sqlite3

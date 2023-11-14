@@ -1,0 +1,15 @@
+{
+    "name": "qna_project",
+    "version": "1.0.0",
+    "description": "WAISL QnA Project",
+    "main": "index.js",
+    "scripts": {
+        "dev": "tailwindcss -i ./src/static/styles/input.css -o ./src/static/styles/output.css --watch",
+        "build": "tailwindcss -i ./src/static/styles/input.css -o ./src/static/styles/output.css"
+    },
+    "author": "Ujjwal Akshith Mondreti",
+    "license": "ISC",
+    "devDependencies": {
+        "tailwindcss": "^3.3.5"
+    }
+}

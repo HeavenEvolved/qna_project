@@ -1,4 +1,8 @@
+# dask
+pandas
+polars
 django
+django-cors-headers
 django-compressor
 ipykernel
 langchain[all]
@@ -10,3 +14,4 @@ accelerate
 llama-cpp-python
 pdf2image
 unstructured_pytesseract
+uuid
