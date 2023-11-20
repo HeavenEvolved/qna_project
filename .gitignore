@@ -1,5 +1,10 @@
 node_modules/
-CACHE/
+src/static/CACHE/
 __pycache__/
-
-files/
+*.pyc
+media/files/
+util.py
+*.gguf
+*.bin
+*.pdf
+*.sqlite3

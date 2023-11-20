@@ -1,5 +1,17 @@
+# dask
+pandas
+polars
 django
+django-cors-headers
 django-compressor
 ipykernel
-langchain
+langchain[all]
+chromadb
 unstructured
+torch
+transformers
+accelerate
+llama-cpp-python
+pdf2image
+unstructured_pytesseract
+uuid

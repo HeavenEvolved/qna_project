@@ -1,0 +1,32 @@
+from langchain.document_loaders import UnstructuredPDFLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from unstructured.cleaners.core import clean, clean_non_ascii_chars
+
+
+def loader(file):
+    return UnstructuredPDFLoader(
+        file,
+        mode="single",
+        post_processors=[
+            clean_non_ascii_chars,
+            lambda x: clean(
+                x,
+                bullets=True,
+                extra_whitespace=True,
+                dashes=True,
+                trailing_punctuation=True,
+                lowercase=True,
+            ),
+        ],
+    ).load()
+
+
+def splitter(obj):
+    return RecursiveCharacterTextSplitter(
+        chunk_size=100, chunk_overlap=0
+    ).split_documents(obj)
+
+
+def ingest(fp):
+    obj = loader(fp)
+    return splitter(obj)

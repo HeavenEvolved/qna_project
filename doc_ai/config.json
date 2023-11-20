@@ -1,0 +1,7 @@
+{
+    "ingest": {
+        "chunk_size": 3000,
+        "overlap": 1000,
+        "allowed": ["**.pdf", "**.txt", "**.docx", "**.doc"]
+    }
+}
