@@ -8,3 +8,4 @@ util.py
 *.bin
 *.pdf
 *.sqlite3
+.env

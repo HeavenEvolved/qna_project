@@ -15,3 +15,6 @@ llama-cpp-python
 pdf2image
 unstructured_pytesseract
 uuid
+huggingface_hub
+python-dotenv
+sentence_transformers

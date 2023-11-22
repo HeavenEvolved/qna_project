@@ -11,11 +11,7 @@ def loader(file):
             clean_non_ascii_chars,
             lambda x: clean(
                 x,
-                bullets=True,
                 extra_whitespace=True,
-                dashes=True,
-                trailing_punctuation=True,
-                lowercase=True,
             ),
         ],
     ).load()
@@ -23,7 +19,7 @@ def loader(file):
 
 def splitter(obj):
     return RecursiveCharacterTextSplitter(
-        chunk_size=100, chunk_overlap=0
+        chunk_size=1000, chunk_overlap=100
     ).split_documents(obj)
 
 
