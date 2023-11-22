@@ -10,8 +10,12 @@ chromadb
 unstructured
 torch
 transformers
+datasets
 accelerate
 llama-cpp-python
 pdf2image
 unstructured_pytesseract
 uuid
+faiss-cpu
+huggingface_hub
+sentence_transformers
