@@ -9,15 +9,29 @@ ALLOW = ["**.pdf", "**.txt", "**.docx", "**.doc"]
 
 
 @timer.time_this
-def ingest(path="/doc_ai/files"):
+def ingest(path="/doc_ai/files/"):
     path = os.getcwd() + path
+    # print(path)
     for ext in ALLOW:
-        files = iglob(path + "/" + ext)
+        try:
+            files = iglob(path + ext)
+            # print(next(files))
+        except Exception as e:
+            print(e)
         if ext.endswith("pdf"):
-            from ingesters import pdf_ingest
+            try:
+                from ingesters import pdf_ingest
+
+                # print("Loaded Ingester")
+            except Exception as e:
+                print("Error:", e)
 
             for file in files:
-                data = pdf_ingest.ingest(file)
+                try:
+                    data = pdf_ingest.ingest(file)
+                    # print(data)
+                except Exception as e:
+                    print(e)
                 try:
                     from main_vector import vectorize
 

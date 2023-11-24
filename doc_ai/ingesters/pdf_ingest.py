@@ -6,7 +6,6 @@ from unstructured.cleaners.core import clean, clean_non_ascii_chars
 def loader(file):
     return UnstructuredPDFLoader(
         file,
-        mode="single",
         post_processors=[
             clean_non_ascii_chars,
             lambda x: clean(

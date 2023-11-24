@@ -1,14 +1,11 @@
-# dask
 pandas
-polars
 django
 django-cors-headers
 django-compressor
 ipykernel
 langchain[all]
 chromadb
-unstructured
-torch
+unstructured[local-inference]
 transformers
 accelerate
 llama-cpp-python
