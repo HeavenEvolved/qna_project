@@ -4,5 +4,6 @@ embeddings = HuggingFaceEmbeddings()
 
 
 def vectorise(docs):
+    print("Starting vectorisation")
     db = FAISS.from_documents(docs,embeddings)
     return db
