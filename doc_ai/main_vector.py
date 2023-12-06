@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 @timer.time_this
 def vectorize(data, db="Chroma"):
-    model_path = os.path.abspath("doc_ai/llm/llama-2-7b-32k-instruct.Q4_K_S.gguf")
+    model_path = os.path.abspath("doc_ai/llm/yarn-llama-2-70b-32k.Q5_K_M.gguf")
 
     # print(model_path)
 
@@ -23,9 +23,10 @@ def vectorize(data, db="Chroma"):
         embeddings = LlamaCppEmbeddings(
             model_path=model_path,
             n_ctx=32768,
-            n_batch=1024,
+            n_gpu_layers=83,
+            # n_batch=1024,
             n_threads=8,
-            verbose=True,
+            verbose=False,
         )
     except Exception as e:
         print(e)
@@ -36,3 +37,8 @@ def vectorize(data, db="Chroma"):
         from vectorizers import chroma_vector
 
         chroma_vector.vectorize(data, embeddings, data[0].metadata)
+
+    elif db == "Faiss":
+        from vectorizers import faiss_vector
+
+        faiss_vector.vectorize(data, embeddings, data[0].metadata)

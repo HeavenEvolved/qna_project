@@ -6,15 +6,14 @@ from langchain.embeddings import HuggingFaceEmbeddings
 
 import torch
 
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import Chroma, Faiss
 
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryBufferMemory
 
-import json
 import os
-import re
-import dotenv
+
+# import dotenv
 
 from utils import timer
 
@@ -22,35 +21,32 @@ import warnings
 
 warnings.filterwarnings("ignore")
 
-API_KEY = dotenv.dotenv_values()["HF_TOKEN"]
-MODEL_ID = dotenv.dotenv_values()["REPO_ID"]
+# API_KEY = dotenv.dotenv_values()["HF_TOKEN"]
+# MODEL_ID = dotenv.dotenv_values()["REPO_ID"]
 
 
 @timer.time_this
 def chat():
     try:
-        model_path = os.path.abspath("doc_ai/llm/llama-2-7b-32k-instruct.Q4_K_S.gguf")
+        model_path = os.path.abspath("doc_ai/llm/yarn-llama-2-70b-32k.Q5_K_M.gguf")
 
         llm = LlamaCpp(
             model_path=model_path,
             n_ctx=32768,
-            use_mlock=True,
-            n_gpu_layers=8,
+            n_gpu_layers=83,
             repeat_penalty=1.2,
             temperature=0.6,
             top_p=0.9,
-            n_threads=16,
+            n_threads=8,
             top_k=10,
-            verbose=True,
             n_batch=1000,
-            device_map="auto",
-            model_kwargs={"n_threads_batch": 16},
+            verbose=False,
         )
 
         embeddings = LlamaCppEmbeddings(
             model_path=model_path,
             n_ctx=32768,
-            n_batch=1024,
+            # n_batch=1024,
             n_threads=8,
             verbose=False,
         )
@@ -74,9 +70,19 @@ def chat():
         print(e)
 
     # embeddings = HuggingFaceEmbeddings()
-    db = Chroma(
-        persist_directory=os.path.abspath("doc_ai/data"), embedding_function=embeddings
-    )
+
+    ds_path = os.getcwd() + "/doc_ai/data"
+
+    if "chroma.sqlite3" in os.listdir(ds_path):
+        db = Chroma(
+            persist_directory=ds_path,
+            embedding_function=embeddings,
+        )
+    elif "index.faiss" in os.listdir(ds_path):
+        db = Faiss.load_local(
+            folder_path=ds_path,
+            embeddings=embeddings,
+        )
 
     memory = ConversationSummaryBufferMemory(
         llm=llm,
@@ -94,18 +100,6 @@ def chat():
     while True:
         query = input("Question: ")
 
-        try:
-            print(
-                "",
-                *[
-                    (docs.page_content, score)
-                    for docs, score in db.similarity_search_with_score(query=query, k=5)
-                ],
-                sep="\n"
-            )
-        except Exception as e:
-            print(e)
-
         if "exit" == query.lower():
             print("Exiting!")
             break
@@ -117,9 +111,6 @@ def chat():
         except Exception as e:
             print("Error:", e)
             return "Error"
-
-        # # print("\nHistory\n")
-        # # print(memory.moving_summary_buffer)
 
         print(result["answer"])
 
