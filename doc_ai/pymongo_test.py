@@ -11,7 +11,7 @@ client = pymongo.MongoClient("localhost:27017")
 
 db = client["file_store"]
 
-collections = db.list_collection_names()
+collections = list(filter(lambda x: "." not in x, db.list_collection_names()))
 print(collections)
 
 
@@ -50,7 +50,7 @@ for collection in collections:
     for file in files:
         doc = loader(file)
         content = doc[0].page_content
-        source = doc[0].metadata["source"].split("/")[-1].split(".")[0] + ".txt"
+        source = doc[0].metadata["source"].split("/")[-1]
         del doc
         doc_hash = calculate_hash(content)
 
@@ -63,7 +63,7 @@ for collection in collections:
         file_id = fs.put(content, filename=source, encoding="utf8")
 
         metadata = {
-            "filename": source.split(".")[0] + ".pdf",
+            "filename": source,
             "hash": doc_hash,
             "file_id": file_id,
         }
