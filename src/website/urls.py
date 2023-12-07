@@ -24,6 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.login, name="login"),
     path("dash/", views.dashboard, name="dash"),
+    path("data_manage/", views.data_manage, name="data_manage"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

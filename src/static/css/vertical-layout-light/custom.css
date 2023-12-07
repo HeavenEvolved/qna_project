@@ -1,0 +1,60 @@
+.auth-form-blue {
+  background-color: #009df0;
+}
+
+.logo-icon {
+  height: 30px;
+}
+
+.logo-title {
+  font-size: 24px !important;
+  color: #009df0;
+}
+.logo-title-dashbd {
+  font-size: 18px !important;
+  color: #009df0;
+}
+.field-icon {
+  float: right;
+  margin-right: 12px;
+  margin-top: -31px;
+  position: relative;
+  z-index: 2;
+}
+
+.container {
+  padding-top: 50px;
+  margin: auto;
+}
+
+.crt-foldr-tbn {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    line-height: 0.7;
+    color: #414A4F;
+    background-color: #fff;
+    padding: 0.6rem 0.8rem;
+    border-radius: 50px;
+    text-decoration: none !important;
+    font-size: 14px;
+    box-shadow: 0 5px 5px -5px #888, -5px 0 5px -5px #888, 5px 0 5px -5px #888;
+    
+}
+.crt-foldr-tbn i {
+  font-size: 2.2rem;
+}
+
+.crt-foldr-tbn:hover {
+    color: #fff;
+    background-color: #009DF0;
+    text-decoration: none !important;
+    transition: ease-in .1s;
+    box-shadow: 0 5px 5px -5px #888, -5px 0 5px -5px #888, 5px 0 5px -5px #888;
+  }
+
+  .bg-white{
+    background-color:#fff;
+
+  }

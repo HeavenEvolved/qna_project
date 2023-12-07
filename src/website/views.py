@@ -29,3 +29,8 @@ def login(request):
 def dashboard(request):
     c = {}
     return render(request, "pages/dash.html", c)
+
+
+def data_manage(request):
+    c = {}
+    return render(request, "pages/data_manage.html")

@@ -1,4 +1,5 @@
 pandas
+pymongo
 django
 django-cors-headers
 django-compressor
