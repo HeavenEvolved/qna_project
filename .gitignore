@@ -19,3 +19,11 @@ test.py
 *.zip
 
 .env
+
+src/docs/migrations/__pycache__/0001_initial.cpython-39.pyc
+src/website/__pycache__/settings.cpython-39.pyc
+src/website/__pycache__/urls.cpython-39.pyc
+src/website/__pycache__/views.cpython-39.pyc
+src/docs/__pycache__/models.cpython-39.pyc
+src/docs/__pycache__/apps.cpython-39.pyc
+src/docs/__pycache__/admin.cpython-39.pyc
