@@ -1,4 +1,4 @@
-$("#login_btn").on("click", (e) => {
+$("#login_btn").on("submit", (e) => {
     e.preventDefault();
     var email = $("#u_email").val();
     var pass = $("#u_pass").val();
