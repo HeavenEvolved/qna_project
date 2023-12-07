@@ -12,7 +12,7 @@ try:
     folder_path = f"\\res_ai\\files\\{choice}"
     df = pd.DataFrame(columns = ['Name', 'Summary','Qualification'],index = None)
     df  = ingest(folder_path,df)
-    df.to_excel("res_ai\data\DS_Resume_Table\DS_Summ.xlsx", index = False)    
+    df.to_excel("res_ai\data\Table_RandomR\RandomRTable.xlsx", index = False)    
 
 except Exception as e:
     pass
