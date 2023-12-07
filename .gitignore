@@ -18,5 +18,4 @@ test.py
 *.sqlite3
 *.zip
 
-util.py
 .env
