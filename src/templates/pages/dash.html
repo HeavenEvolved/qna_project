@@ -191,17 +191,13 @@
                                 id="profileDropdown"
                             >
                                 <i class="ti-user mx-0 text-white"></i>
-                                <span class="text-white">Jhon Doe</span>
+                                <span class="text-white">{{ request.user.get_username }}</span>
                             </a>
                             <div
                                 class="dropdown-menu dropdown-menu-right navbar-dropdown"
                                 aria-labelledby="profileDropdown"
                             >
-                                <a class="dropdown-item">
-                                    <i class="ti-settings text-primary"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item">
+                                <a class="dropdown-item" href={% url "logout" %}>
                                     <i class="ti-power-off text-primary"></i>
                                     Logout
                                 </a>
@@ -353,60 +349,6 @@
                                         <a class="nav-link" href=""
                                             >Submenu 1</a
                                         >
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                data-toggle="collapse"
-                                href="#auth"
-                                aria-expanded="false"
-                                aria-controls="auth"
-                            >
-                                <i class="icon-head menu-icon"></i>
-                                <span class="menu-title">User Pages</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="collapse" id="auth">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">
-                                            Submenu 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">
-                                            Submenu 2
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                data-toggle="collapse"
-                                href="#error"
-                                aria-expanded="false"
-                                aria-controls="error"
-                            >
-                                <i class="icon-ban menu-icon"></i>
-                                <span class="menu-title">Error pages</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                            <div class="collapse" id="error">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">
-                                            Submenu 1
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="">
-                                            Submenu 2
-                                        </a>
                                     </li>
                                 </ul>
                             </div>

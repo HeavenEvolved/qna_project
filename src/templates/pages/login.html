@@ -60,9 +60,13 @@
                                         <img src={% static "images/GenAI.png" %} alt="logo" class="logo-icon" />
                                         <span class="logo-title">GenAI</span>
                                     </div>
+                                    {% if request.session.data %}
+                                    <h3 class="pt-2">{{ request.session.data.msg }}</h3>
+                                    {% else %}
                                     <h3 class="pt-2">let's get started!</h3>
+                                    {% endif %}
 
-                                    <form class="pt-3">
+                                    <form class="pt-3" method="post" action={% url "login" %}>
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label for="u_email"
@@ -145,7 +149,6 @@
         <script src={% static "js/settings.js" %}></script>
         <script src={% static "js/todolist.js" %}></script>
         <!-- endinject -->
-        <script src={% static "js/handle_login.js" %}></script>
 
         <!-- password toggle -->
         <script>
