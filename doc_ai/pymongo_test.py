@@ -69,3 +69,5 @@ for collection in collections:
         }
 
         curr_col.insert_one(metadata)
+        
+
