@@ -3,7 +3,7 @@
 <html lang="en">
     {% include "head/head.html" %}
     <body>
-        {% block content %}{% endblock content %}
+        {% include "head/navs.html" %} {% block content %}{% endblock content %}
 
         <!-- prettier-ignore -->
         {% include "head/js.html" %}

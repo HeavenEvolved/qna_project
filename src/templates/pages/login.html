@@ -1,167 +1,115 @@
-{% load static %}
+{% extends "_base.html" %}{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <title>GenAI Sign in</title>
-        <!-- plugins:css -->
-        <!--prettier-ignore-->
-        <link rel="stylesheet" href={% static "vendors/feather/feather.css"%}/>
-
-        <link
-            rel="stylesheet"
-            href={% static "vendors/ti-icons/css/themify-icons.css" %}
-        />
-        <link
-            rel="stylesheet"
-            href={% static "vendors/css/vendor.bundle.base.css" %}
-        />
-        <!-- endinject -->
-        <!-- Plugin css for this page -->
-        <!-- End plugin css for this page -->
-        <!-- inject:css -->
-        <!--prettier-ignore-->
-        <link rel="stylesheet" href={% static "css/vertical-layout-light/style.css" %} />
-        <link
-            rel="stylesheet"
-            href={% static "css/vertical-layout-light/custom.css" %}
-        />
-        <!-- endinject -->
-        <link rel="shortcut icon" href={% static "images/GenAI.png" %} />
-        <link
-            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-            rel="stylesheet"
-        />
-    </head>
-
-    <body>
-        <div class="container-scroller">
-            <div class="container-fluid page-body-wrapper full-page-wrapper">
-                <div class="content-wrapper auth px-0">
-                    <div class="row h-100">
-                        <div class="col-lg-7 pr-0">
-                            <div class="auth-form-blue h-100"></div>
-                        </div>
-                        <div class="col-lg-5 pl-0">
+{% block content %}
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper auth px-0">
+            <div class="row h-100">
+                <div class="col-lg-7 pr-0">
+                    <div class="auth-form-blue h-100"></div>
+                </div>
+                <div class="col-lg-5 pl-0">
+                    <div
+                        class="auth-form-light h-100 auth-form-padding"
+                    >
+                        <div class="text-left py-5 px-4 px-sm-5 h-100">
                             <div
-                                class="auth-form-light h-100 auth-form-padding"
+                                class="brand-logo d-flex align-items-center justify-content-center"
                             >
-                                <div class="text-left py-5 px-4 px-sm-5 h-100">
-                                    <div
-                                        class="brand-logo d-flex align-items-center justify-content-center"
-                                    >
-                                        <!--prettier-ignore-->
-                                        <img src={% static "images/GenAI.png" %} alt="logo" class="logo-icon" />
-                                        <span class="logo-title">GenAI</span>
-                                    </div>
-                                    {% if request.session.data %}
-                                    <h3 class="pt-2">{{ request.session.data.msg }}</h3>
-                                    {% else %}
-                                    <h3 class="pt-2">let's get started!</h3>
-                                    {% endif %}
-
-                                    <form class="pt-3" method="post" action={% url "login" %}>
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            <label for="u_email"
-                                                >Email-Id</label
-                                            >
-                                            <input
-                                                id="u_email"
-                                                name="u_email"
-                                                type="email"
-                                                class="form-control form-control-lg"
-                                                placeholder="xxxx@xxxx.xxx"
-                                                required
-                                            />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="u_pass"
-                                                >Password</label
-                                            >
-                                            <input
-                                                id="u_pass"
-                                                name="u_pass"
-                                                type="password"
-                                                class="form-control form-control-lg"
-                                                placeholder="Password123"
-                                                required
-                                            />
-                                            <span
-                                                toggle="#u_pass"
-                                                class="fa fa-fw fa-eye field-icon toggle-password"
-                                            ></span>
-                                        </div>
-
-                                        <div
-                                            class="my-2 d-flex justify-content-between align-items-center"
-                                        >
-                                            <div class="form-check">
-                                                <label
-                                                    class="form-check-label text-muted"
-                                                >
-                                                    <input
-                                                        type="checkbox"
-                                                        class="form-check-input"
-                                                    />
-                                                    Keep me signed in
-                                                </label>
-                                            </div>
-                                            <a
-                                                href="#"
-                                                class="auth-link text-black"
-                                                >Forgot password?</a
-                                            >
-                                        </div>
-                                        <div class="mt-3">
-                                            <button
-                                                id="login_btn"
-                                                class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                                type="submit"
-                                                >Sign In</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                <!--prettier-ignore-->
+                                <img src={% static "images/GenAI.png" %} alt="logo" class="logo-icon" />
+                                <span class="logo-title">GenAI</span>
                             </div>
+                            {% if request.session.data %}
+                            <h3 class="pt-2">{{ request.session.data.msg }}</h3>
+                            {% else %}
+                            <h3 class="pt-2">let's get started!</h3>
+                            {% endif %}
+
+                            <form class="pt-3" method="post" action={% url "login" %}>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="u_email"
+                                        >Email-Id</label
+                                    >
+                                    <input
+                                        id="u_email"
+                                        name="u_email"
+                                        type="email"
+                                        class="form-control form-control-lg"
+                                        placeholder="xxxx@xxxx.xxx"
+                                        required
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="u_pass"
+                                        >Password</label
+                                    >
+                                    <input
+                                        id="u_pass"
+                                        name="u_pass"
+                                        type="password"
+                                        class="form-control form-control-lg"
+                                        placeholder="Password123"
+                                        required
+                                    />
+                                    <span
+                                        toggle="#u_pass"
+                                        class="fa fa-fw fa-eye field-icon toggle-password"
+                                    ></span>
+                                </div>
+
+                                <div
+                                    class="my-2 d-flex justify-content-between align-items-center"
+                                >
+                                    <div class="form-check">
+                                        <label
+                                            class="form-check-label text-muted"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                class="form-check-input"
+                                            />
+                                            Keep me signed in
+                                        </label>
+                                    </div>
+                                    <a
+                                        href="#"
+                                        class="auth-link text-black"
+                                        >Forgot password?</a
+                                    >
+                                </div>
+                                <div class="mt-3">
+                                    <button
+                                        id="login_btn"
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                                        type="submit"
+                                        >Sign In</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
             </div>
-            <!-- page-body-wrapper ends -->
         </div>
-        <!-- container-scroller -->
-        <!-- plugins:js -->
-        <script src={% static "vendors/js/vendor.bundle.base.js" %}></script>
-        <!-- endinject -->
-        <!-- Plugin js for this page -->
-        <!-- End plugin js for this page -->
-        <!-- inject:js -->
-        <script src={% static "js/off-canvas.js" %}></script>
-        <script src={% static "js/hoverable-collapse.js" %}></script>
-        <script src={% static "js/template.js" %}></script>
-        <script src={% static "js/settings.js" %}></script>
-        <script src={% static "js/todolist.js" %}></script>
-        <!-- endinject -->
-
-        <!-- password toggle -->
-        <script>
-            $(".toggle-password").click(function () {
-                $(this).toggleClass("fa-eye fa-eye-slash");
-                var input = $($(this).attr("toggle"));
-                if (input.attr("type") == "password") {
-                    input.attr("type", "text");
-                } else {
-                    input.attr("type", "password");
-                }
-            });
-        </script>
-        <!-- password toggle end here-->
-    </body>
-</html>
+        <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+{% endblock content %}
+        
+{% block page_js %}
+<!-- password toggle -->
+<script>
+    $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>
+<!-- password toggle end here-->
+{% endblock page_js %}

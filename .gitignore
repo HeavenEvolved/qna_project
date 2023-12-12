@@ -2,11 +2,13 @@ node_modules/
 CACHE/
 __pycache__/
 search_outputs/
+clones/
 
 questions.txt
 search_test.py
 test.py
 
+*.code-workspace
 *.pyc
 *.gguf
 *.bin

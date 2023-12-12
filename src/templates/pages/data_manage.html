@@ -1,455 +1,581 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends "_base_nav.html" %}{% load static %}
 
+{% block dash_li %}<li class="nav-item">{% endblock dash_li %}
+{% block data_manage_li %}<li class="nav-item active">{% endblock data_manage_li %}
 
-
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>GenAI Dashboard</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href={% static "vendors/feather/feather.css" %}>
-    <link rel="stylesheet" href={% static "vendors/ti-icons/css/themify-icons.css" %}>
-    <link rel="stylesheet" href={% static "vendors/css/vendor.bundle.base.css" %}>
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href={% static "vendors/mdi/css/materialdesignicons.min.css" %}>
-    <!-- inject:css -->
-    <link rel="stylesheet" href={% static "css/vertical-layout-light/style.css" %}>
-    <link rel="stylesheet" href={% static "css/vertical-layout-light/custom.css" %}>
-    <!-- endinject -->
-    <link rel="shortcut icon" href={% static "images/GenAI.png" %} />
-</head>
-
-<body>
-    <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
-        <nav class="bg-primary navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-
-            <div class="bg-primary navbar-menu-wrapper d-flex align-items-center justify-content-between">
-                <div
-                    class="bg-primary text-center navbar-brand-wrapper d-flex align-items-center justify-content-between">
-                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
-                        data-toggle="minimize">
-                        <span class="icon-menu text-white"></span>
-                    </button>
-                    <a class="navbar-brand brand-logo mr-5 d-flex justify-content-center align-items-center"
-                        href="/dash"><img src={% static "images/GenAI-light.png" %} class="mr-2" alt="logo" /><span
-                            class="logo-title-dashbd text-white">GenAI</span></a>
-                    <!-- <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/GenAI-light.png" alt="logo" /></a> -->
-                </div>
-                <ul class="navbar-nav mr-lg-2">
-                    <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                                <span class="input-group-text" id="search">
-                                    <i class="icon-search text-white"></i>
-                                </span>
+{% block content %}
+<div class="main-panel">
+    <div class="content-wrapper pt-4">
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div>
+                                <h3 class="fw-bold">Local Data Management</h3>
+                                <p>{{ request.session.folders|length }} {% if request.session.folders|length == 1 %}Folder{% else %}Folders{% endif %} Created{% for message in messages %} | <span {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}class="text-danger"{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}class="text-success"{% endif %}> {{ message }}{% endfor %}</span></p>
                             </div>
-                            <input type="text" class="form-control text-white" id="navbar-search-input"
-                                placeholder="Search now" aria-label="search" aria-describedby="search">
+                            <div class="">
+                                <a href="" class="crt-foldr-tbn" data-toggle="modal"
+                                    data-target="#exampleModal"><i class="mdi mdi-plus"></i> Create
+                                    Folder</a>
+                            </div>
                         </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                            data-toggle="dropdown">
-                            <i class="icon-bell mx-0 text-white"></i>
-                            <span class="count">3</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                            aria-labelledby="notificationDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="ti-info-alt mx-0 text-white"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-warning text-white">
-                                        <i class="ti-settings mx-0 text-white"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        Private message
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-info">
-                                        <i class="ti-user mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                    <p class="font-weight-light small-text mb-0 text-muted">
-                                        2 days ago
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <i class="ti-user mx-0 text-white"></i> <span class="text-white">Jhon Doe</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
-                                <i class="ti-settings text-primary"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item">
-                                <i class="ti-power-off text-primary"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-                    <!-- <li class="nav-item nav-settings d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              <i class="icon-ellipsis"></i>
-            </a>
-          </li> -->
-                </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                    data-toggle="offcanvas">
-                    <span class="icon-menu text-white"></span>
-                </button>
-            </div>
-        </nav>
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- start wrapper_sidebar -->
+                        <div class="wrapper_sidebar">
 
-            <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas bg-dark" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dash">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
-                            <i class="icon-layout menu-icon"></i>
-                            <span class="menu-title">Data Management</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/data_manage">Submenu
-                                        1</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="/local_data_manage">Local Data Management</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="">External Data Management</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
-                            aria-controls="form-elements">
-                            <i class="icon-columns menu-icon"></i>
-                            <span class="menu-title">Business Case</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="form-elements">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link" href={% static "pages/forms/basic_elements.html" %}>Submenu
-                                        1</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
-                            aria-controls="charts">
-                            <i class="icon-bar-graph menu-icon"></i>
-                            <span class="menu-title">Configuration</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="charts">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href={% static "pages/charts/chartjs.html" %}>Submenu 1</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
-                            aria-controls="tables">
-                            <i class="icon-grid-2 menu-icon"></i>
-                            <span class="menu-title">Admin Management</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="tables">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href={% static "pages/tables/basic-table.html" %}>Submenu
-                                        1</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
-                            aria-controls="icons">
-                            <i class="icon-contract menu-icon"></i>
-                            <span class="menu-title">Reports</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="icons">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href={% static "pages/icons/mdi.html" %}>Submenu 1</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
-                            aria-controls="auth">
-                            <i class="icon-head menu-icon"></i>
-                            <span class="menu-title">User Pages</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="auth">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href={% static "pages/samples/login.html" %}> Submenu 1
-                                    </a></li>
-                                <li class="nav-item"> <a class="nav-link" href={% static "pages/samples/register.html" %}> Submenu 2
-                                    </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
-                            aria-controls="error">
-                            <i class="icon-ban menu-icon"></i>
-                            <span class="menu-title">Error pages</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="error">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href={% static "pages/samples/error-404.html" %}> Submenu 1
-                                    </a></li>
-                                <li class="nav-item"> <a class="nav-link" href={% static "pages/samples/error-500.html" %}> Submenu 2
-                                    </a></li>
-                            </ul>
-                        </div>
-                    </li>
+                            <div id="content">
 
-                </ul>
-            </nav>
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper pt-4">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="p-2">
+                                            <div class="">
+                                                <div class="">
+                                                    <div
+                                                        class="d-flex justify-content-between align-content-center mb-2">
+                                                        <div>
+                                                            <button
+                                                                class="btn btn-light bg-white dropdown-toggle"
+                                                                type="button" id="dropdownMenuDate2"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="true">
+                                                                Modified
+                                                            </button>
+                                                            <div class="dropdown-menu dropdown-menu-right"
+                                                                aria-labelledby="dropdownMenuDate2">
+                                                                <a class="dropdown-item" href="#">Today</a>
+                                                                <a class="dropdown-item" href="#">Last 7
+                                                                    days</a>
+                                                                <a class="dropdown-item" href="#">Last 30
+                                                                    days</a>
+                                                                <a class="dropdown-item" href="#">This year
+                                                                    (2023)</a>
+                                                                <a class="dropdown-item" href="">Last year
+                                                                    (2022)</a>
+                                                                <a class="dropdown-item" href="">Custom date
+                                                                    range</a>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <!-- Actual search box -->
+                                                            <div class="form-group has-search">
+                                                                <span
+                                                                    class="fa fa-search form-control-feedback"></span>
+                                                                <input type="text"
+                                                                    class="form-control-search"
+                                                                    placeholder="Search">
+
+                                                            </div>
+                                                        </div>
+                                                        {% comment %} <div
+                                                            class="d-flex justify-content-between align-items-top">
+                                                            <div class="icnsmovr mr-2"><a href=""
+                                                                    class="text-dark"><i
+                                                                        class="fa fa-list"></i></a></div>
+
+                                                            <div id="sidebarCollapse" class="icnsmovr">
+                                                                <a type="button" class="text-dark">
+                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                </a>
+                                                            </div>
+
+                                                        </div> {% endcomment %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ldtmgemt">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="d-flex flex-wrap" id="folders">
+                                                            {% for x in request.session.folders %}
+                                                            <div
+                                                            id="{{ x.folder_id }}"
+                                                                class="card {{ x.folder_color }} {{ x.text_color }} pb-2 rounded width230 mr-2 mb-2">
+                                                                    <div class="card-header p-2">
+                                                                        <div
+                                                                            class="d-flex justify-content-between align-items-center">
+                                                                            <div id="folder_name" class="hover-cursor">
+                                                                                <h6 class="mb-0">{{ x.folder_name }}
+                                                                                </h6>
+                                                                            </div>
+                                                                            <div class="dropdown">
+                                                                                <a type="button"
+                                                                                    id="{{ x.folder_dropdown }}"
+                                                                                    class="folder_dropdown {{ x.text_color }}"
+                                                                                    data-toggle="dropdown"
+                                                                                    aria-haspopup="true"
+                                                                                    aria-expanded="false">
+                                                                                    <i
+                                                                                        class="mdi mdi-dots-vertical"></i>
+                                                                                </a>
+                                                                                <div class="dropdown-menu"
+                                                                                    aria-labelledby="{{ x.folder_dropdown }}">
+                                                                                    <button
+                                                                                        class="update_folder dropdown-item"
+                                                                                        type="button"><i
+                                                                                            class="fa fa-edit"></i>
+                                                                                        Update</button>
+                                                                                    <button
+                                                                                        class="delete_folder dropdown-item"
+                                                                                        type="button"><i
+                                                                                            class="fa fa-trash"></i>
+                                                                                        Delete</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-body pt-5 pl-2 pr-2 pb-2">
+                                                                        <div
+                                                                            class="d-flex justify-content-between align-items-center">
+                                                                            <div>
+                                                                                <p class="mb-0">Total Resume :
+                                                                                </p>
+                                                                            </div>
+                                                                            <div>
+                                                                                <p class="mb-0">{{ x.resume_count }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="d-flex justify-content-between align-items-center">
+                                                                            <div>
+                                                                                <p class="mb-0">Total JD :</p>
+                                                                            </div>
+                                                                            <div>
+                                                                                <p class="mb-0">{{ x.jd_count }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div id="sidebars">
+                                <div class="sidebar-header">
+                                    <div class="d-flex justify-content-between align-content-center">
                                         <div>
-                                            <h3 class="fw-bold">Data Management</h3>
-                                            <p>Lorem ipsum dolor sit amet consectetur</p>
+                                            <h5 class="text-dark"><i
+                                                    class="fa fa-folder text-success mr-2"></i>
+                                                Java Developer</h5>
+                                            <p class="text-muted">Lorem ipsum dolor sit amet consectetur</p>
                                         </div>
-                                        <div class="">
-                                            <a href="" class="crt-foldr-tbn" data-toggle="modal"
-                                                data-target="#exampleModal"><i class="mdi mdi-plus"></i> Create
-                                                Folder</a>
-                                        </div>
+                                        <div><a id="sidebarCollapse" href="" class="text-dark"><i
+                                                    class="fa fa-times"></i></a> </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="bg-white p-4">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <p>No Folder added. <a href="">Please Create Folder.</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="bg-light rounded mb-1" style="height:120px;"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                <ul class="nav nav-pills justify-content-center" id="pills-tab"
+                                    role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="detail-tab" data-toggle="pill"
+                                            href="#detail" role="tab" aria-controls="detail"
+                                            aria-selected="true">Details</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="activity-tab" data-toggle="pill"
+                                            href="#activity" role="tab" aria-controls="activity"
+                                            aria-selected="false">Activity</a>
+                                    </li>
 
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.
-                            GenAI
-                            All rights reserved.</span>
-
-                    </div>
-                </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-
-
-
-
-
-
-        <!-- Modal Create Folder -->
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add a folder</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <form class="forms-sample">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="exampleInputUsername1">Name</label>
-                                            <input type="text" class="form-control" id="exampleInputUsername1"
-                                                placeholder="Enter folder name (eg. Java Developer/Network Engineer)">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="exampleInputUsername1">Category</label>
-                                            <div class="d-flex justify-content-start align-items-center">
-                                                <div class="form-check mr-4">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input"
-                                                            name="membershipRadios" id="membershipRadios1" value=""
-                                                            checked>
-                                                        Resume Analytic
-                                                    </label>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="detail" role="tabpanel"
+                                        aria-labelledby="detail-tab">
+                                        <div class="folderview p-2">
+                                            <div class="folderview-header">
+                                                <h6 class="fw-bold pb-3">Folder Overview</h6>
+                                            </div>
+                                            <div class="folderview-body rightsidetabviewscroll">
+                                                <div class="pr-2">
+                                                    <div class="mb-3">
+                                                        <small class="text-muted fw-bold">Folder
+                                                            Name</small>
+                                                        <p class="text-muted">Java-SDE-2</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <small class="text-muted fw-bold">Category</small>
+                                                        <p class="text-muted">Resume</p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <small
+                                                            class="text-muted fw-bold">Description</small>
+                                                        <p class="text-muted">This is to store JD and Resume
+                                                            for Java-SDE2 (With the experience of 5-7 years)
+                                                        </p>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <small class="text-muted fw-bold">Time and
+                                                            Date</small>
+                                                        <p class="text-muted">07:43 | 30 Oct 2023</p>
+                                                    </div>
+                                                    <div class="mb-5">
+                                                        <small class="text-muted fw-bold">Created by</small>
+                                                        <p class="text-muted">Jhon Doe</p>
+                                                    </div>
                                                 </div>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="radio" class="form-check-input"
-                                                            name="membershipRadios" id="membershipRadios2"
-                                                            value="option2">
-                                                        Legal Analytic
-                                                    </label>
+                                                <div class="folderview-footer pr-4 pl-4">
+                                                    <div class="mb-2">
+                                                        <button href="" class="addnewfiles"
+                                                            data-toggle="modal"
+                                                            data-target="#addnewfiles"><i
+                                                                class="mdi mdi-plus"></i> Add New Files
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="exampleInputUsername1">Description</label>
-                                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                                    <div class="tab-pane fade" id="activity" role="tabpanel"
+                                        aria-labelledby="activity-tab">
+                                        <div class="recent-activity p-2">
+                                            <div class="recentactivity-header">
+                                                <h6 class="fw-bold pb-3">Recent Activity</h6>
+                                            </div>
+                                            <div class="recentactivity-body rightsidetabviewscroll">
+                                                <div class="pr-2">
+                                                    <ul class="recent-activity">
+                                                        <li>
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-start">
+                                                                <div class="recntimg mr-2">
+                                                                    <img src="images/avtar.png"
+                                                                        class="avticn" />
+                                                                </div>
+                                                                <div class="recntcontent text-left">
+                                                                    <h5 class="mb-0 recent_title">Jhon Doe
+                                                                    </h5>
+                                                                    <p class="smtitle text-primary mb-0">A
+                                                                        new folder was created with name
+                                                                        Java-SDE 2 under Resume category</p>
+                                                                    <small class="text-muted">07:43 | 3 Oct
+                                                                        2023</small>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-start">
+                                                                <div class="recntimg mr-2">
+                                                                    <img src="images/avtar.png"
+                                                                        class="avticn" />
+                                                                </div>
+                                                                <div class="recntcontent text-left">
+                                                                    <h5 class="mb-0 recent_title">Jhon Doe
+                                                                    </h5>
+                                                                    <p class="smtitle text-primary mb-0">A
+                                                                        new folder was created with name
+                                                                        Java-SDE 2 under Resume category</p>
+                                                                    <small class="text-muted">07:43 | 3 Oct
+                                                                        2023</small>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div
+                                                                class="d-flex justify-content-between align-items-start">
+                                                                <div class="recntimg mr-2">
+                                                                    <img src="images/avtar.png"
+                                                                        class="avticn" />
+                                                                </div>
+                                                                <div class="recntcontent text-left">
+                                                                    <h5 class="mb-0 recent_title">Jhon Doe
+                                                                    </h5>
+                                                                    <p class="smtitle text-primary mb-0">A
+                                                                        new folder was created with name
+                                                                        Java-SDE 2 under Resume category</p>
+                                                                    <small class="text-muted">07:43 | 3 Oct
+                                                                        2023</small>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="recentactivity-footer pr-4 pl-4">
+                                                    <div class="mb-2">
+                                                        <button href="" class="addnewfiles"
+                                                            data-toggle="modal"
+                                                            data-target="#exampleModal"><i
+                                                                class="mdi mdi-plus"></i> Add New Files
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                            </div>
 
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Create</button>
+                        <!-- wrapper_sidebar end -->
+
+
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Modal Create Folder end here -->
-
-
-
 
     </div>
-    <!-- container-scroller -->
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023.
+                GenAI
+                All rights reserved.</span>
 
-    <!-- plugins:js -->
-    <script src={% static "vendors/js/vendor.bundle.base.js" %}></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src={% static "vendors/chart.js/Chart.min.js" %}></script>
-    <script src={% static "vendors/datatables.net/jquery.dataTables.js" %}></script>
-    <script src={% static "vendors/datatables.net-bs4/dataTables.bootstrap4.js" %}></script>
-    <script src={% static "js/dataTables.select.min.js" %}></script>
-
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src={% static "js/off-canvas.js" %}></script>
-    <script src={% static "js/hoverable-collapse.js" %}></script>
-    <script src={% static "js/template.js" %}></script>
-    <script src={% static "js/settings.js" %}></script>
-    <script src={% static "js/todolist.js" %}></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src={% static "js/jquery.cookie.js" %} type="text/javascript"></script>
-    <script src={% static "js/dashboard.js" %}></script>
-    <script src={% static "js/Chart.roundedBarCharts.js" %}></script>
-    <!-- End custom js for this page-->
-</body>
+        </div>
+    </footer>
+    <!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
 
 
 
+<!-- Modal Create Folder -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a folder</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <form class="forms-sample" action="" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="u_folder_name">Name</label>
+                                <input type="text" class="form-control" id="u_folder_name" name="u_folder_name"
+                                    placeholder="Enter folder name (eg. Java Developer/Network Engineer)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="u_category">Category</label>
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <div class="form-check mr-4">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input"
+                                                name="u_domain" id="u_domain" value="resume_analytics"
+                                                selected>
+                                            Resume Analytic
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input"
+                                                name="u_domain" id="u_domain"
+                                                value="legal_analytics">
+                                            Legal Analytic
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="u_desc">Description</label>
+                                <textarea class="form-control" id="u_desc" name="u_desc" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
 
-</html>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Modal Create Folder end here -->
+
+<!-- Modal -->
+<div class="modal fade" id="addnewfiles" tabindex="-1" role="dialog" aria-labelledby="addnewfilesLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="addnewfiles">Upload File</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div>
+                <form class="forms-sample">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <div class="d-flex justify-content-start align-content-center">
+                                    <div class="bg-primary plusiconsbg mr-1"><i
+                                            class="mdi mdi-plus text-white fontsize32"></i></div>
+                                    <div>
+                                        <h4 class="fw-bold">Upload Files </h4>
+                                        <p class="small-text">File size limitation upto <a href="">60MB</a>
+                                            File type should be <a href="">.pdf or .text or .doc</a></p>
+                                    </div>
+                                </div>
+                                <div class="file-drop-area">
+                                    <span class="choose-file-button">Choose files</span>
+                                    <span class="file-message">or drag and drop files here</span>
+                                    <input class="file-input" type="file" multiple>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputUsername1 fw-bold">Name</label>
+                                <input type="text" class="form-control" id="exampleInputUsername1"
+                                    placeholder="Enter folder name (eg. Java Developer/Network Engineer)">
+                                <!-- <span class="text-danger small-text"><i class="fa fa-alert text-danger"></i> <b>Alert!</b> File with same content already exist. Please upload new file.</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputUsername1 fw-bold">Category</label>
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <div class="form-check mr-4">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input"
+                                                name="membershipRadios" id="membershipRadios1" value=""
+                                                checked>
+                                            Resume
+                                        </label>
+                                    </div>
+                                    <div class="form-check mr-4">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input"
+                                                name="membershipRadios" id="membershipRadios2"
+                                                value="option2">
+                                            Job Description
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input"
+                                                name="membershipRadios" id="membershipRadios2"
+                                                value="option2">
+                                            Legal
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputUsername1 fw-bold">Description</label>
+                                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Modal Create Folder end here -->
+
+
+</div>
+{% endblock content %}
+
+{% block page_js %}
+<script>
+    $(document).ready(function () {
+        $("#sidebarCollapse").on('click', function () {
+            $("#sidebars").toggleClass('active');
+        });
+    });
+</script>
+
+
+<script>
+    $(document).on('change', '.file-input', function () {
+
+
+        var filesCount = $(this)[0].files.length;
+
+        var textbox = $(this).prev();
+
+        if (filesCount === 1) {
+            var fileName = $(this).val().split('\\').pop();
+            textbox.text(fileName);
+        } else {
+            textbox.text(filesCount + ' files selected');
+        }
+    });
+</script>
+
+<script>
+    const folders = document.querySelectorAll('#folder_name');
+    
+    folders.forEach(folder => {
+        $(folder).on('click', (e) => {
+            e.stopPropagation();
+            if (!e.target.classList.contains("mdi")) {
+                let id = folder.parentElement.parentElement.parentElement.id;
+                $.post({% url "file_manage" %}, {folder: id});
+            }
+        });
+    });
+</script>
+
+<script>
+    const folder_dropdowns = document.querySelectorAll('.folder_dropdown');
+    const update_folder_options = document.querySelectorAll(".update_folder");
+
+    update_folder_options.forEach(update_folder => {
+        $(update_folder).on('click', (e) => {
+            e.preventDefault();
+            let folder_id = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+            if (folder_id === "") {
+                folder_id = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+            }
+            $.post({% url "update_folder" %}, {folder: folder_id});
+        })
+    });
+</script>
+{% endblock page_js %}
