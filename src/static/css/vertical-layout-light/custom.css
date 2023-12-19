@@ -63,18 +63,19 @@
     background-color: #fff;
 }
 
-.bg-pink {
-    background-color: #e54274;
+.bg-purple {
+    background-color: #9580b5 !important;
 }
 
 .bg-yellow {
-    background-color: #f5c154;
+    background-color: #f7d675 !important;
 }
 .bg-lightss {
-    background-color: #ededee;
+    background-color: #9797cf !important;
 }
-.bg-aqua {
-    background-color: #59b9c9;
+
+.bg-green {
+    background-color: #69b77b !important;
 }
 
 /* Bootstrap 4 text input with search icon */
@@ -88,8 +89,8 @@
     z-index: 2;
     display: block;
     width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
     pointer-events: none;
     color: #aaa;
@@ -98,22 +99,23 @@
 .form-control-search {
     display: block;
     width: 100%;
-    height: 2.375rem;
+    height: 30px;
 
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1;
     color: #495057;
-    background-color: #fff;
+    background-color: #eff9ff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    /* border: 1px solid #ced4da; */
+    border: 0;
     border-radius: 25px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .form-control-search:hover {
     display: block;
     width: 100%;
-    height: 2.375rem;
+    height: 30px;
 
     font-size: 0.875rem;
     font-weight: 400;
@@ -146,7 +148,8 @@
 }
 
 .width230 {
-    width: 210px;
+    width: 170px;
+    aspect-ratio: 1/1;
 }
 
 /* Works on Firefox */
@@ -185,7 +188,7 @@
     line-height: 0.5;
     color: #fff;
     background-color: #009df0;
-    padding: 0.6rem 1.8rem;
+    padding: 0.8rem 1.8rem;
     border-radius: 50px;
     text-decoration: none !important;
     font-size: 16px;
@@ -194,7 +197,8 @@
     width: 100%;
 }
 .addnewfiles i {
-    font-size: 2.2rem;
+    /* font-size: 2.2rem; */
+    font-size: 26px;
 }
 
 .addnewfiles:hover {
@@ -231,7 +235,7 @@
     align-items: center;
     width: 330px;
     max-width: 100%;
-    padding: 25px;
+    padding: 18px 25px;
     border: 1px dashed rgba(0, 0, 0, 0.4);
     border-radius: 3px;
     transition: 0.2s;
@@ -311,10 +315,11 @@
 .scrollable-content {
     background: white;
     flex-grow: 1;
-    overflow: auto;
+    overflow: hidden;
     /* for Firefox */
     min-height: 0;
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
+    /* overflow-y: hidden; */
 }
 
 .tabledatacroll {
@@ -357,4 +362,30 @@
 .activitydrdpncontent {
     width: 25rem !important;
     left: -244% !important;
+}
+
+.navbar-light .navbar-nav .show > .nav-link {
+    color: #009df0 !important;
+}
+
+.contentscrollscustom {
+    background: #3f51b5;
+    /* give the outermost container a predefined size */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    height: calc(100vh - 200px);
+}
+.scrollable-content {
+    background: white;
+    flex-grow: 1;
+    /* overflow: hidden; */
+    /* for Firefox */
+    min-height: 0;
+    overflow-x: hidden;
 }
