@@ -16,7 +16,7 @@
                                 <div class="col-md-12">
                                     <div class="d-flex justify-content-between align-items-center mb-1">
                                         <div id="folder_name" data-folder="{{ request.session.curr_folder.folder_name }}" class="mr-5">
-                                            <h4 class="fw-bold">{{ request.session.curr_folder.folder_name }} | {{ request.session.curr_folder.resume_count }}</h4>
+                                            <h4 class="fw-bold">{{ request.session.curr_folder.folder_name }}</h4>
                                             <p>{{ request.session.curr_folder.description }}</p>
                                         </div>
 
@@ -214,8 +214,8 @@
 
                                         </div>
                                         <div class="">
-                                            <button href="" class="addnewfiles" data-toggle="modal"
-                                                data-target="#addnewfiles"><i class="mdi mdi-plus"></i> Add New Files
+                                            <button href="" class="add_files" data-toggle="modal"
+                                                data-target="#add_files_modal"><i class="mdi mdi-plus"></i> Add New Files
                                             </button>
                                         </div>
                                     </div>
@@ -277,7 +277,7 @@
                                                                             </button>
                                                                             <button class="dropdown-item" type="button"
                                                                                 data-toggle="modal"
-                                                                                data-target="#updatefiles"><i
+                                                                                data-target="#update_files_modal"><i
                                                                                     class="fa fa-edit"></i>
                                                                                 Update</button>
                                                                             <button class="dropdown-item" type="button"
@@ -324,16 +324,17 @@
 
         <!-- Modal Create file upload -->
         <!-- Modal -->
-        <div class="modal fade" id="addnewfiles" tabindex="-1" role="dialog" aria-labelledby="addnewfilesLabel"
+        <div class="modal fade" id="add_files_modal" tabindex="-1" role="dialog" aria-labelledby="add_files_modal_label"
             aria-hidden="true">
 
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header p-2">
-                        <h6 class="modal-title" id="addnewfilesLabel">File Upload</h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button id="add_files_close_btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+                        <h6 class="modal-title" id="add_files_modal_label">File Upload</h6>
+                        <h6 id="add_file_error_msg" class="text-danger"></h6><h6 id="add_file_success_msg" class="text-success"></h6>
                     </div>
                     <div class="modal-body">
                         <div>
@@ -421,14 +422,14 @@
         </div>
 
         <!-- Modal Update file upload starts here -->
-        <div class="modal fade" id="updatefiles" tabindex="-1" role="dialog" aria-labelledby="updatefilesLabel"
+        <div class="modal fade" id="update_files_modal" tabindex="-1" role="dialog" aria-labelledby="update_files_modal_label"
             aria-hidden="true">
 
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header p-2">
-                        <h6 class="modal-title" id="updatefilesLabel">File Update</h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h6 class="modal-title" id="update_files_modal_label">File Update</h6>
+                        <button id="update_files_close_btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -546,6 +547,14 @@
 
     {% block page_js %}
     <script>
+        $("#add_files_close_btn, #update_files_close_btn").on("click", () => {
+            window.location = '{% url "file_manage" %}';
+        })
+        $("#add_files_modal, #update_files_modal").on('hide.bs.modal', function(){
+            window.location = '{% url "file_manage" %}';
+        });
+    </script>
+    <script>
         $('#file_upload').submit(function(evnt){
             if($('#name').val().length <=0){
                 $('#name').attr('style','border-color:red');
@@ -620,10 +629,11 @@
                 timeout: 2000,
                 success: (x) => {
                     if (x.status === 1){
-                        console.log(x.msg);
+                        $("#add_file_success_msg").css("display", "inline").text(x.msg);
                         names_textbox.setAttribute("value", "");
                     }
                     else {
+                        $("#add_file_error_msg").css("display", "inline").text(x.msg);
                         console.log(x.msg);
                     }
                 },

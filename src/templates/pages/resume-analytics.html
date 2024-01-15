@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GenAI Dashboard</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/feather/feather.css">
+    <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="../../css/vertical-layout-light/custom.css">
+    <link rel="stylesheet" href="../../css/vertical-layout-light/style-slider-right.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/GenAI.png" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <style>
+        .form-check .form-check-label {
+            min-height: 18px;
+            display: block;
+            margin-left: 1.45rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="bg-primary navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+
+            <div class="bg-primary navbar-menu-wrapper d-flex align-items-center justify-content-between">
+                <div
+                    class="bg-primary text-center navbar-brand-wrapper d-flex align-items-center justify-content-between">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
+                        data-toggle="minimize">
+                        <span class="icon-menu text-white"></span>
+                    </button>
+                    <a class="navbar-brand brand-logo mr-5 d-flex justify-content-center align-items-center"
+                        href="index.html"><img src="images/GenAI-light.png" class="mr-2" alt="logo" /><span
+                            class="logo-title-dashbd text-white">GenAI</span></a>
+                    <!-- <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/GenAI-light.png" alt="logo" /></a> -->
+                </div>
+
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                            data-toggle="dropdown">
+                            <i class="icon-bell mx-0 text-white"></i>
+                            <span class="count">3</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                            aria-labelledby="notificationDropdown">
+                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="ti-info-alt mx-0 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Just now
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-warning text-white">
+                                        <i class="ti-settings mx-0 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">Settings</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        Private message
+                                    </p>
+                                </div>
+                            </a>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-info">
+                                        <i class="ti-user mx-0"></i>
+                                    </div>
+                                </div>
+                                <div class="preview-item-content">
+                                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                                    <p class="font-weight-light small-text mb-0 text-muted">
+                                        2 days ago
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            <i class="ti-user mx-0 text-white"></i> <span class="text-white">Jhon Doe</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
+                            <a class="dropdown-item">
+                                <i class="ti-settings text-primary"></i>
+                                Settings
+                            </a>
+                            <a class="dropdown-item">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                    <!-- <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="icon-ellipsis"></i>
+            </a>
+          </li> -->
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="icon-menu text-white"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas bg-dark" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Data Management</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="Data-management.html">Submenu
+                                        1</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="local-data-management.html">Local Data
+                                        Management</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="">External Data Management</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
+                            aria-controls="form-elements">
+                            <i class="icon-columns menu-icon"></i>
+                            <span class="menu-title">Business Case</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="form-elements">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Submenu
+                                        1</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false"
+                            aria-controls="charts">
+                            <i class="icon-bar-graph menu-icon"></i>
+                            <span class="menu-title">Configuration</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="charts">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Submenu 1</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false"
+                            aria-controls="tables">
+                            <i class="icon-grid-2 menu-icon"></i>
+                            <span class="menu-title">Admin Management</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="tables">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Submenu
+                                        1</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false"
+                            aria-controls="icons">
+                            <i class="icon-contract menu-icon"></i>
+                            <span class="menu-title">Reports</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="icons">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Submenu 1</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false"
+                            aria-controls="auth">
+                            <i class="icon-head menu-icon"></i>
+                            <span class="menu-title">User Pages</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="auth">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Submenu 1
+                                    </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Submenu 2
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false"
+                            aria-controls="error">
+                            <i class="icon-ban menu-icon"></i>
+                            <span class="menu-title">Error pages</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="error">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> Submenu 1
+                                    </a></li>
+                                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> Submenu 2
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="resume_analytics_main_container">
+                    <div class="d-flex justify-content-start ">
+                        <div class="rsm_analtcs_sidebar_main">
+                            <h4>Resume Analytics</h4>
+                            <div class="border-bottom"></div>
+
+                            <div class="accordion" id="accordionExample">
+                                <div class="p-0">
+                                    <div class="p-0" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link p-0 text-dark fw-bold" type="button"
+                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Data Scientist
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                        data-parent="#accordionExample">
+                                        <div class="">
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Data Scientist_JD_V1.0
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Data Scientist_JD_V1.0
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-0">
+                                    <div class="p-0" id="headingTwo">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link text-dark fw-bold p-0 collapsed" type="button"
+                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                                Computer Version (98)
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordionExample">
+                                        <div class="">
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Computer Version_JD_V1.0
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Computer Version_JD_V1.0
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-0">
+                                    <div class="p-0" id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link p-0 collapsed text-left text-dark fw-bold"
+                                                type="button" data-toggle="collapse" data-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                                Presales Solutions Architect (87)
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordionExample">
+                                        <div class="">
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Presales Solutionarchitect_JD_V1.0
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Presales Solutionarchitect_JD_V1.0
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-0">
+                                    <div class="p-0" id="headingFour">
+                                        <h2 class="mb-0">
+                                            <button
+                                                class="btn btn-link p-0 collapsed text-dark text-left text-darkheadingFour fw-bold"
+                                                type="button" data-toggle="collapse" data-target="#headingFour"
+                                                aria-expanded="false" aria-controls="headingFour">
+                                                Enterprise Architect (243)
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="headingFour" class="collapse" aria-labelledby="headingFour"
+                                        data-parent="#accordionExample">
+                                        <div class="">
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Enterprise Achitect_JD_V1.0
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Enterprise Architect_JD_V1.0
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-0">
+                                    <div class="p-0" id="headingFive">
+                                        <h2 class="mb-0">
+                                            <button
+                                                class="btn btn-link p-0 collapsed text-dark text-left text-darkheadingFour fw-bold"
+                                                type="button" data-toggle="collapse" data-target="#headingFive"
+                                                aria-expanded="false" aria-controls="headingFive">
+                                                Network Engineer (243)
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="headingFive" class="collapse" aria-labelledby="headingFive"
+                                        data-parent="#accordionExample">
+                                        <div class="">
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Network Engineer_JD_V1.0
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Network Engineer_JD_V1.0
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-0">
+                                    <div class="p-0" id="headingFive">
+                                        <h2 class="mb-0">
+                                            <button
+                                                class="btn btn-link p-0 collapsed text-dark text-left text-darkheadingFour fw-bold"
+                                                type="button" data-toggle="collapse" data-target="#headingFive"
+                                                aria-expanded="false" aria-controls="headingFive">
+                                                Java SDE3 (264)
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="headingFive" class="collapse" aria-labelledby="headingFive"
+                                        data-parent="#accordionExample">
+                                        <div class="">
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Java SDE3_JD_V1.0
+                                                </label>
+                                            </div>
+                                            <div class="form-check mb-0 mt-0">
+                                                <label class="fs14">
+                                                    <input type="radio" value="" checked>
+                                                    Java SDE3_JD_V1.0
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div
+                            class="chat_main_container d-flex flex-column justify-content-end position-relative w-100">
+                            <div class="chatscrollscustom">
+                                <div class="chatscrollable-content p-2">
+                                    
+
+
+                                    <div class="result_main_container ">
+                                        <div class="resultprompt_box p-2 mb-2">Top 5 resumes matching with selected JD
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <p class="text-muted">Here is the result of your Question</p>
+                                            </div>
+                                            <div><button type="button" class="btn btn-primary">Download</button></div>
+                                        </div>
+
+
+
+                                        <div class="resumt_output mt-2">
+                                            <div class="resultss bg-light border p-2 rounded mb-2">
+                                                <div class="d-flex justify-content-around  align-items-center">
+                                                    <div class="w-75 mr-5">
+                                                        <div class="form-check form-check-flat form-check-primary">
+                                                            <div class="d-flex justify-content-start">
+                                                                <label class="form-check-label mr-2">
+                                                                    <input type="checkbox" class="form-check-input">
+                                                                </label>
+                                                                <div>
+                                                                    <h4 class="mb-2">Score 80/100</h4>
+                                                                    <h6 class="mb-1"><b>Name :</b> Swarnima Singh</h6>
+                                                                    <div class="text-muted">
+                                                                        <span id="dots"></span>
+                                                                        <div id="more">
+                                                                            <p
+                                                                                class="text-dark mt-3 mb-0 text-uppercase fw-bold">
+                                                                                Advantages</p>
+                                                                            <ul>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+
+                                                                            </ul>
+                                                                            <p
+                                                                                class="text-dark mt-2 mb-0 text-uppercase fw-bold">
+                                                                                Weakness</p>
+                                                                            <ul>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+
+                                                                            </ul>
+                                                                        </div> <a class="read_morelessbtn"
+                                                                            onclick="myFunction()" id="myBtn">Read
+                                                                            more</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-25 sore_container">
+
+                                                        <div><a href="" class="mr-4"><i
+                                                                    class="fa fa-thumbs-up fs30"></i></a> <a href=""><i
+                                                                    class="fa fa-thumbs-down text-muted fs30"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="resultss bg-light border p-2 rounded mb-2">
+                                                <div class="d-flex justify-content-around  align-items-center">
+                                                    <div class="w-75 mr-5">
+                                                        <div class="form-check form-check-flat form-check-primary">
+                                                            <div class="d-flex justify-content-start">
+                                                                <label class="form-check-label mr-2">
+                                                                    <input type="checkbox" class="form-check-input">
+                                                                </label>
+                                                                <div>
+                                                                    <h4 class="mb-2">Score 80/100</h4>
+                                                                    <h6 class="mb-1"><b>Name :</b> Swarnima Singh</h6>
+                                                                    <div class="text-muted">
+                                                                        <span id="dots1"></span>
+                                                                        <div id="more1">
+                                                                            <p
+                                                                                class="text-dark mt-3 mb-0 text-uppercase fw-bold">
+                                                                                Advantages</p>
+                                                                            <ul>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+
+                                                                            </ul>
+                                                                            <p
+                                                                                class="text-dark mt-2 mb-0 text-uppercase fw-bold">
+                                                                                Weakness</p>
+                                                                            <ul>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+                                                                                <li>You can make flex items take the
+                                                                                    content width instead of the width
+                                                                                    of the parent container with CSS
+                                                                                    properties.</li>
+
+                                                                            </ul>
+                                                                        </div> <a class="read_morelessbtn"
+                                                                            onclick="myFunction1()" id="myBtn1">Read
+                                                                            more</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-25 sore_container">
+
+                                                        <div><a href="" class="mr-4"><i
+                                                                    class="fa fa-thumbs-up fs30"></i></a> <a href=""><i
+                                                                    class="fa fa-thumbs-down text-muted fs30"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="search_main_container d-flex align-items-end bg-light p-2">
+                                <div class="w-100">
+                                        <div class="d-flex flex-column justify-content-between position-relative">
+                                            <div class="mb-2 d-flex justify-content-center align-items-center">
+                                                <div class="prompt_box p-3 w-50  mr-3">Top 5 Resume Matching with the JD
+                                                </div>
+                                                <div class="prompt_box p-3 w-50">Top 10 resumes with highest weightage
+                                                    of
+                                                    technical
+                                                    skill</div>
+                                            </div>
+
+
+                                            <div class="mb-2 d-flex justify-content-between align-items-center">
+                                                <div class="prompt_box p-3 w-50  mr-3">Top 5 Resume Matching with the JD
+                                                </div>
+                                                <div class="prompt_box p-3 w-50">Top 10 resumes with highest weightage
+                                                    of
+                                                    technical
+                                                    skill</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <!-- <div class="search">
+
+                                    <input type="text" class="form-control" placeholder="Have a question? Ask Now">
+                                    <button><i class="fa fa-location-arrow text-gray fa-rotate-45"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </div> -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+
+
+
+
+
+
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="js/dataTables.select.min.js"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
+
+
+    <script>
+        $(document).ready(function () {
+            $("#sidebarCollapse").on('click', function () {
+                $("#sidebars").toggleClass('active');
+            });
+        });
+    </script>
+
+    <!-- upload files -->
+    <script>
+        $(document).on('change', '.file-input', function () {
+
+
+            var filesCount = $(this)[0].files.length;
+
+            var textbox = $(this).prev();
+
+            if (filesCount === 1) {
+                var fileName = $(this).val().split('\\').pop();
+                textbox.text(fileName);
+            } else {
+                textbox.text(filesCount + ' files selected');
+            }
+        });
+    </script>
+
+    <!-- readmore script -->
+    <script>
+        function myFunction() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = document.getElementById("myBtn");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+        }
+    </script>
+    <script>
+        function myFunction1() {
+            var dots1 = document.getElementById("dots1");
+            var moreText1 = document.getElementById("more1");
+            var btnText1 = document.getElementById("myBtn1");
+
+            if (dots1.style.display === "none") {
+                dots1.style.display = "inline";
+                btnText1.innerHTML = "Read more";
+                moreText1.style.display = "none";
+            } else {
+                dots1.style.display = "none";
+                btnText1.innerHTML = "Read less";
+                moreText1.style.display = "inline";
+            }
+        }
+    </script>
+
+</body>
+
+
+
+
+</html>

@@ -16,3 +16,4 @@ uuid
 huggingface_hub
 python-dotenv
 sentence_transformers
+celery

@@ -11726,8 +11726,8 @@ fieldset:disabled .wizard > .actions a,
 .btn-primary,
 .wizard > .actions a {
     color: #fff;
-    background-color: #009df0 !important;
-    border-color: #009df0 !important;
+    background-color: #009df0;
+    border-color: #009df0;
 }
 
 .btn-primary:hover,
@@ -19225,11 +19225,19 @@ a.close.disabled {
     opacity: 0.5;
 }
 
+#add_folder_error_msg,
+#add_folder_success_msg,
+#add_file_error_msg,
+#add_file_success_msg {
+    display: none;
+}
+
 .modal-header {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
     border-bottom: 1px solid #ced4da;
     border-top-left-radius: calc(0.3rem - 1px);
     border-top-right-radius: calc(0.3rem - 1px);
@@ -19241,6 +19249,10 @@ a.close.disabled {
 }
 
 .modal-title {
+    line-height: 1.5;
+}
+
+.modal-subtitle {
     margin-bottom: 0;
     line-height: 1.5;
 }
@@ -19255,7 +19267,7 @@ a.close.disabled {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center !important;
+    justify-content: center;
     padding: 0.6875rem;
     border-top: 1px solid #ced4da;
     border-bottom-right-radius: calc(0.3rem - 1px);
@@ -19905,6 +19917,14 @@ button.bg-primary:focus,
 
 .bg-secondary {
     background-color: #a3a4a5 !important;
+}
+
+.bg-green {
+    background-color: #2f9e44 !important;
+}
+
+.bg-purple {
+    background-color: #7950f2 !important;
 }
 
 a.bg-secondary:hover,
@@ -36798,19 +36818,19 @@ div.tagsinput span.tag a {
     padding: 0;
 }
 
-.sidebar .nav.sub-menu .nav-item::before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    position: absolute;
-    margin-top: 16px;
-    border-radius: 50%;
-    background: #fff;
-}
+/* .sidebar .nav.sub-menu .nav-item::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  margin-top: 16px;
+  border-radius: 50%;
+  background: #fff;
+} */
 
 .sidebar .nav.sub-menu .nav-item .nav-link {
     color: #fff;
-    padding: 0.7rem 1rem;
+    padding: 0.5rem 0.2rem;
     position: relative;
     font-size: 0.875rem;
     line-height: 1;

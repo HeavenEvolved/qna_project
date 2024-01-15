@@ -1,0 +1,355 @@
+{% extends "_base_nav.html" %}
+
+<!--prettier-ignore-->
+{% block page_css %}
+
+<style>
+    .form-check .form-check-label {
+        min-height: 18px;
+        display: block;
+        margin-left: 1.45rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+</style>
+
+<!--prettier-ignore-->
+{% endblock page_css %}
+
+<!--prettier-ignore-->
+{% block content %}
+
+<div class="main-panel">
+    <div class="resume_analytics_main_container">
+        <div class="d-flex justify-content-start ">
+            <div class="rsm_analtcs_sidebar_main">
+                <h4>Resume Analytics</h4>
+
+                <div class="border-bottom"></div>
+                
+                <div class="accordion" id="accordionExample">
+                    {% for x in request.session.choice_data %}
+                    <div class="p-0">
+                        <div class="p-0" id="heading_{{ x.folder_name }}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link p-0 text-dark collapsed fw-bold" type="button"
+                                    data-toggle="collapse" data-target="#collapse_{{ x.folder_web_id }}" aria-expanded="false"
+                                    aria-controls="collapse_{{ x.folder_web_id }}">
+                                    {{ x.folder_name }} ({{ x.resume_count }})
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapse_{{ x.folder_web_id }}" class="collapse" aria-labelledby="heading_{{ x.folder_web_id }}"
+                            data-parent="#accordionExample">
+                            <div class="">
+                                {% for f in x.files %}
+                                {% if f.category == "jd" %}
+                                <div class="form-check mb-0 mt-0">
+                                    <label class="fs14">
+                                        <input type="radio" name="jd_select" value="{{ x.folder_web_id }}|{{ f.file_name_id }}">
+                                        {{ f.file_name }}
+                                    </label>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div
+                class="chat_main_container d-flex flex-column justify-content-end position-relative w-100">
+                <div class="chatscrollscustom">
+                    <div class="chatscrollable-content p-2">
+                        
+
+
+                        <div class="result_main_container ">
+                            <div class="resultprompt_box p-2 mb-2">Top 5 resumes matching with selected JD
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <p class="text-muted">Here is the result of your Question</p>
+                                </div>
+                                <div><button type="button" class="btn btn-primary">Download</button></div>
+                            </div>
+
+
+
+                            <div class="resumt_output mt-2">
+                                <div class="resultss bg-light border p-2 rounded mb-2">
+                                    <div class="d-flex justify-content-around  align-items-center">
+                                        <div class="w-75 mr-5">
+                                            <div class="form-check form-check-flat form-check-primary">
+                                                <div class="d-flex justify-content-start">
+                                                    <label class="form-check-label mr-2">
+                                                        <input type="checkbox" class="form-check-input">
+                                                    </label>
+                                                    <div>
+                                                        <h4 class="mb-2">Score 80/100</h4>
+                                                        <h6 class="mb-1"><b>Name :</b> Swarnima Singh</h6>
+                                                        <div class="text-muted">
+                                                            <span id="dots"></span>
+                                                            <div id="more">
+                                                                <p
+                                                                    class="text-dark mt-3 mb-0 text-uppercase fw-bold">
+                                                                    Advantages</p>
+                                                                <ul>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+
+                                                                </ul>
+                                                                <p
+                                                                    class="text-dark mt-2 mb-0 text-uppercase fw-bold">
+                                                                    Weakness</p>
+                                                                <ul>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+
+                                                                </ul>
+                                                            </div> <a class="read_morelessbtn"
+                                                                onclick="myFunction()" id="myBtn">Read
+                                                                more</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                        <div class="w-25 sore_container">
+
+                                            <div><a href="" class="mr-4"><i
+                                                        class="fa fa-thumbs-up fs30"></i></a> <a href=""><i
+                                                        class="fa fa-thumbs-down text-muted fs30"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="resultss bg-light border p-2 rounded mb-2">
+                                    <div class="d-flex justify-content-around  align-items-center">
+                                        <div class="w-75 mr-5">
+                                            <div class="form-check form-check-flat form-check-primary">
+                                                <div class="d-flex justify-content-start">
+                                                    <label class="form-check-label mr-2">
+                                                        <input type="checkbox" class="form-check-input">
+                                                    </label>
+                                                    <div>
+                                                        <h4 class="mb-2">Score 80/100</h4>
+                                                        <h6 class="mb-1"><b>Name :</b> Swarnima Singh</h6>
+                                                        <div class="text-muted">
+                                                            <span id="dots1"></span>
+                                                            <div id="more1">
+                                                                <p
+                                                                    class="text-dark mt-3 mb-0 text-uppercase fw-bold">
+                                                                    Advantages</p>
+                                                                <ul>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+
+                                                                </ul>
+                                                                <p
+                                                                    class="text-dark mt-2 mb-0 text-uppercase fw-bold">
+                                                                    Weakness</p>
+                                                                <ul>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+                                                                    <li>You can make flex items take the
+                                                                        content width instead of the width
+                                                                        of the parent container with CSS
+                                                                        properties.</li>
+
+                                                                </ul>
+                                                            </div> <a class="read_morelessbtn"
+                                                                onclick="myFunction1()" id="myBtn1">Read
+                                                                more</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                        <div class="w-25 sore_container">
+
+                                            <div><a href="" class="mr-4"><i
+                                                        class="fa fa-thumbs-up fs30"></i></a> <a href=""><i
+                                                        class="fa fa-thumbs-down text-muted fs30"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+
+                <div class="search_main_container d-flex align-items-end bg-light p-2">
+                    <div class="w-100">
+                            <div class="d-flex flex-column justify-content-between position-relative">
+                                <div class="mb-2 d-flex justify-content-center align-items-center">
+                                    <div class="prompt_box p-3 w-50  mr-3">Top 5 Resume Matching with the JD
+                                    </div>
+                                    <div class="prompt_box p-3 w-50">Top 10 resumes with highest weightage
+                                        of
+                                        technical
+                                        skill</div>
+                                </div>
+
+
+                                <div class="mb-2 d-flex justify-content-between align-items-center">
+                                    <div class="prompt_box p-3 w-50  mr-3">Top 5 Resume Matching with the JD
+                                    </div>
+                                    <div class="prompt_box p-3 w-50">Top 10 resumes with highest weightage
+                                        of
+                                        technical
+                                        skill</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- <div class="search">
+
+                        <input type="text" class="form-control" placeholder="Have a question? Ask Now">
+                        <button><i class="fa fa-location-arrow text-gray fa-rotate-45"
+                                aria-hidden="true"></i>
+                        </button>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+
+
+
+
+
+
+</div>
+
+<!--prettier-ignore-->
+{% endblock content %}
+
+<!--prettier-ignore-->
+{% block page_js %}
+
+<script>
+    $(document).ready(() => {
+        $("input[type='radio'][name='jd_select']").on('input', (e) => {
+            e.preventDefault();
+            let folder_web_id = e.target.value.split('|')[0];
+            let 
+            console.log(e.target.value);
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#sidebarCollapse").on('click', function () {
+            $("#sidebars").toggleClass('active');
+        });
+    });
+</script>
+
+<!-- upload files -->
+<script>
+    $(document).on('change', '.file-input', function () {
+
+
+        var filesCount = $(this)[0].files.length;
+
+        var textbox = $(this).prev();
+
+        if (filesCount === 1) {
+            var fileName = $(this).val().split('\\').pop();
+            textbox.text(fileName);
+        } else {
+            textbox.text(filesCount + ' files selected');
+        }
+    });
+</script>
+
+<!-- readmore script -->
+<script>
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
+</script>
+<script>
+    function myFunction1() {
+        var dots1 = document.getElementById("dots1");
+        var moreText1 = document.getElementById("more1");
+        var btnText1 = document.getElementById("myBtn1");
+
+        if (dots1.style.display === "none") {
+            dots1.style.display = "inline";
+            btnText1.innerHTML = "Read more";
+            moreText1.style.display = "none";
+        } else {
+            dots1.style.display = "none";
+            btnText1.innerHTML = "Read less";
+            moreText1.style.display = "inline";
+        }
+    }
+</script>
+
+<!--prettier-ignore-->
+{% endblock page_js %}

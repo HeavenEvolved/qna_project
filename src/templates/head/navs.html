@@ -203,7 +203,11 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item {% block active_data_manage %}{% endblock active_data_manage %}">
+        {% if request.session.business_case %}
+        <li class="nav-item active">
+        {% else %}
+        <li class="nav-item">
+        {% endif %}
             <a
                 class="nav-link"
                 data-toggle="collapse"
@@ -218,13 +222,13 @@
             <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href=""
-                            >Legal Analytics</a
+                        <a class="nav-link" href={% url "resume" %}
+                            >Resume Analytics</a
                         >
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href=""
-                            >Resume Analytics</a
+                            >Legal Analytics</a
                         >
                     </li>
                 </ul>

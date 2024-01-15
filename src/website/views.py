@@ -30,9 +30,9 @@ User = get_user_model()
 colors = [
     "bg-primary",
     "bg-secondary",
+    "bg-yellow",
     "bg-green",
     "bg-purple",
-    "bg-yellow",
     "bg-lightss",
     "bg-dark",
 ]
@@ -93,19 +93,6 @@ def dashboard(request):
         return render(request, "pages/dash.html", c)
 
 
-def search_folder(request):
-    pass
-
-
-@csrf_exempt
-def delete_folder(request):
-    pass
-
-
-def update_file(request):
-    pass
-
-
 def data_manage(request):
     c = {}
     if request.user.is_authenticated:
@@ -115,6 +102,7 @@ def data_manage(request):
         folders_metadata_collection = folders_data["metadata"]
         request.session["dash"] = False
         request.session["data_manage"] = True
+        request.session["business_case"] = False
         global temp_colors
         if request.method == "POST":
             if request.POST["type"] == "update_folder":
@@ -122,14 +110,13 @@ def data_manage(request):
                 name_updated = False
                 folder_web_id = request.POST["folder_web_id"]
                 folder_name_error_msg = (
-                    """Error! """
                     """The Folder name has to be 5-25 characters long. """
                     """The Folder name needs to contain atleast one alphabet or number. """
                     """The Folder name can only contain a-z, A-Z, _ (underscores) and spaces. """
                     """The Folder name needs to start with an alphabet."""
                 )
                 folder_exists_error_msg = (
-                    """Error! The Folder name you entered already exists!"""
+                    """The Folder name you entered already exists!"""
                 )
                 folder_filters = [
                     lambda x: re.findall(r"^[a-zA-Z][a-zA-Z0-9_ ]{4,25}$", x) == [],
@@ -321,14 +308,13 @@ def data_manage(request):
                 if not temp_colors:
                     temp_colors = list(colors)
                 folder_name_error_msg = (
-                    """Error! """
                     """The Folder name has to be 5-25 characters long. """
                     """The Folder name needs to contain atleast one alphabet or number. """
                     """The Folder name can only contain a-z, A-Z, _ (underscores) and spaces. """
                     """The Folder name needs to start with an alphabet."""
                 )
                 folder_exists_error_msg = (
-                    """Error! The Folder name you entered already exists!"""
+                    """The Folder name you entered already exists!"""
                 )
                 folder_filters = [
                     lambda x: re.findall(r"^[a-zA-Z][a-zA-Z0-9_ ]{4,25}$", x) == [],
@@ -415,7 +401,8 @@ def data_manage(request):
                         "folder_color": x["folder_color"],
                         "folder_web_id": folder_web_id,
                         "text_color": "text-dark"
-                        if x["folder_color"] in ["bg-secondary", "bg-yellow"]
+                        if x["folder_color"]
+                        in ["bg-secondary", "bg-yellow", "bg-lightss"]
                         else "text-white",
                     }
                     for x in folders
@@ -439,7 +426,7 @@ def data_manage(request):
                     "folder_color": x["folder_color"],
                     "folder_web_id": x["folder_web_id"],
                     "text_color": "text-dark"
-                    if x["folder_color"] in ["bg-secondary", "bg-yellow"]
+                    if x["folder_color"] in ["bg-secondary", "bg-yellow", "bg-lightss"]
                     else "text-white",
                 }
                 for x in folders
@@ -474,6 +461,7 @@ def file_manage(request):
         folders_metadata_collection = folders_data["metadata"]
         request.session["dash"] = False
         request.session["data_manage"] = True
+        request.session["business_case"] = False
         error_files = []
         if request.method == "POST":
             if request.POST["type"] == "file_upload":
@@ -487,17 +475,25 @@ def file_manage(request):
                         f"{folder_web_id}_metadata"
                     ]
                     folder_path = curr_folder["folder_files_path"]
+                    temp_folder_path = os.path.abspath(f"src/media/temp")
                     file_name = "_".join(files[index].name.lower().split())
+                    file_exists_error_msg = """The File you uploaded already exists!"""
                     if curr_folder:
                         if file_name.split(".")[1] not in ["pdf", "docx", "doc", "txt"]:
-                            print("Added to Error Files")
-                            error_files.append(file_name)
-                            continue
+                            response_to_page = {
+                                "status": 0,
+                                "msg": "The File can only be of pdf, docx, doc and txt type.",
+                            }
+                            return HttpResponse(
+                                json.dumps(response_to_page),
+                                content_type="application/json",
+                            )
+                        temp_file_path = temp_folder_path + "/" + file_name
                         final_file_path = folder_path + "/" + file_name
-                        with open(final_file_path, "wb+") as fp:
+                        with open(temp_file_path, "wb+") as fp:
                             for chunk in files[index].chunks():
                                 fp.write(chunk)
-                        file_content = load_file(final_file_path)
+                        file_content = load_file(temp_file_path)
                         if list(
                             folder_files_metadata_collection.find(
                                 {"file_content_id": calculate_hash(file_content)}
@@ -507,9 +503,20 @@ def file_manage(request):
                                 {"file_name_id": calculate_hash(file_name)}
                             )
                         ):
-                            print("Added to Error Files")
-                            error_files.append(file_name)
-                            continue
+                            os.remove(temp_file_path)
+                            response_to_page = {
+                                "status": 0,
+                                "msg": file_exists_error_msg,
+                            }
+                            return HttpResponse(
+                                json.dumps(response_to_page),
+                                content_type="application/json",
+                            )
+                        else:
+                            os.remove(temp_file_path)
+                            with open(final_file_path, "wb+") as fp:
+                                for chunk in files[index].chunks():
+                                    fp.write(chunk)
                         file_metadata = {
                             "file_content_id": calculate_hash(file_content),
                             "file_name_id": calculate_hash(file_name),
@@ -527,6 +534,8 @@ def file_manage(request):
                             "created_on": datetime.now(),
                             "modified_by": request.user.username,
                             "modified_on": datetime.now(),
+                            "uploaded": 1,
+                            "processed": 0,
                         }
                         folders_metadata_collection.update_one(
                             {"folder_web_id": folder_web_id},
@@ -584,3 +593,55 @@ def file_manage(request):
                 else:
                     request.session["curr_files"] = []
             return render(request, "pages/file_manage.html", c)
+
+
+def resume(request):
+    c = {}
+    if request.user.is_authenticated:
+        client = pymongo.MongoClient(mongo_url)
+        folders_data = client["folders_data"]
+        files_data = client["files_data"]
+        folders_metadata_collection = folders_data["metadata"]
+        request.session["dash"] = False
+        request.session["data_manage"] = False
+        request.session["business_case"] = True
+        request.session["folders"] = [
+            {
+                "folder_name": x["folder_name"],
+                "description": x["description"],
+                "jd_count": x["jd_count"],
+                "resume_count": x["resume_count"],
+                "folder_dropdown": f"{x['folder_web_id']}_dropdown",
+                "folder_color": x["folder_color"],
+                "folder_web_id": x["folder_web_id"],
+                "text_color": "text-dark"
+                if x["folder_color"] in ["bg-secondary", "bg-yellow", "bg-lightss"]
+                else "text-white",
+            }
+            for x in folders_metadata_collection.find({})
+        ]
+        request.session["choice_data"] = [
+            {
+                "folder_name": x["folder_name"],
+                "description": x["description"],
+                "jd_count": x["jd_count"],
+                "resume_count": x["resume_count"],
+                "folder_dropdown": f"{x['folder_web_id']}_dropdown",
+                "folder_color": x["folder_color"],
+                "folder_web_id": x["folder_web_id"],
+                "text_color": "text-dark"
+                if x["folder_color"] in ["bg-secondary", "bg-yellow", "bg-lightss"]
+                else "text-white",
+                "files": [
+                    {
+                        "file_name": f["file_name"],
+                        "file_name_id": f["file_name_id"],
+                        "category": f["category"],
+                    }
+                    for f in files_data[x["folder_web_id"] + "_metadata"].find({})
+                ],
+            }
+            for x in request.session["folders"]
+        ]
+        if request.method == "GET":
+            return render(request, "pages/resume.html", c)
