@@ -2,7 +2,7 @@ from langchain.llms import HuggingFaceHub
 from langchain.chains.question_answering import load_qa_chain
 import os 
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "SECRET"
 llm=HuggingFaceHub(repo_id="MBZUAI/LaMini-Flan-T5-248M", model_kwargs={"temperature":0.6, "max_length":512})
 
 
